@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'h8GE_SY')));
+app.use(express.static(__dirname, 'Alzhiemer Main'));
 
 // Built-in FAQ for basic questions
 const faq = {
@@ -269,11 +269,11 @@ app.get('/api/total-tests', async (req, res) => {
 
 // Serve frontend
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'h8GE_SY/index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/index.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'h8GE_SY/index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // ML Prediction endpoint
