@@ -62,9 +62,9 @@ The system allows users to:
 
 ### Frontend
 
-- HTML5
-- CSS3
-- JavaScript
+- HTML5/CSS3
+- Tailwind CSS
+- Vanilla JavaScript
 
 ### Backend
 
