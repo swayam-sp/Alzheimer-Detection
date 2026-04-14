@@ -24,3 +24,5 @@ test_output.txt
 # OS files
 .DS_Store
 Thumbs.db
+
+.env
