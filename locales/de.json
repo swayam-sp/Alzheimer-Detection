@@ -1,0 +1,144 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "assessment": "Bewertung",
+    "dashboard": "Dashboard",
+    "games": "Gehirnspiele",
+    "about": "Über uns"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "forgotPassword": "Passwort vergessen?",
+    "loginTitle": "Willkommen zurück",
+    "registerTitle": "Konto erstellen",
+    "loginSubtitle": "Melden Sie sich in Ihrem Konto an",
+    "registerSubtitle": "Treten Sie unserer Gemeinschaft bei",
+    "loginButton": "Anmelden",
+    "registerButton": "Konto erstellen",
+    "loading": "Laden...",
+    "errors": {
+      "invalidCredentials": "Ungültige E-Mail oder Passwort",
+      "emailExists": "E-Mail existiert bereits",
+      "weakPassword": "Passwort ist zu schwach",
+      "networkError": "Netzwerkfehler. Bitte versuchen Sie es erneut."
+    }
+  },
+  "questionnaire": {
+    "title": "Alzheimer-Risikobewertung",
+    "subtitle": "Füllen Sie diese umfassende Bewertung aus, um Ihre Risikofaktoren zu verstehen",
+    "start": "Bewertung starten",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "submit": "Bewertung absenden",
+    "progress": "Schritt {{current}} von {{total}}",
+    "categories": {
+      "demographic": "Persönliche Informationen",
+      "lifestyle": "Lebensstilfaktoren",
+      "medical": "Medizinische Vorgeschichte",
+      "cognitive": "Kognitive Bewertung"
+    },
+    "questions": {
+      "age": "Wie alt sind Sie?",
+      "gender": "Was ist Ihr Geschlecht?",
+      "ethnicity": "Was ist Ihre Ethnie?",
+      "education": "Was ist Ihr höchster Bildungsabschluss?",
+      "bmi": "Was ist Ihr BMI?",
+      "smoking": "Rauchen Sie?",
+      "alcohol": "Wie viele alkoholische Getränke konsumieren Sie pro Woche?",
+      "physicalActivity": "Wie viele Stunden körperliche Aktivität betreiben Sie pro Woche?",
+      "dietQuality": "Auf einer Skala von 1-10, wie würden Sie die Qualität Ihrer Ernährung bewerten?",
+      "sleepQuality": "Auf einer Skala von 1-10, wie würden Sie die Qualität Ihres Schlafs bewerten?",
+      "familyHistory": "Haben Sie eine Familienanamnese von Alzheimer?",
+      "cardiovascular": "Wurden Sie mit Herz-Kreislauf-Erkrankungen diagnostiziert?",
+      "diabetes": "Wurden Sie mit Diabetes diagnostiziert?",
+      "depression": "Wurden Sie mit Depression diagnostiziert?",
+      "headInjury": "Hatten Sie jemals eine signifikante Kopfverletzung?",
+      "hypertension": "Wurden Sie mit Bluthochdruck diagnostiziert?",
+      "mmse": "Was ist Ihr MMSE-Score?",
+      "memoryComplaints": "Erleben Sie häufige Gedächtnisbeschwerden?",
+      "behavioralProblems": "Haben andere Verhaltensprobleme bemerkt?",
+      "confusion": "Erleben Sie Episoden von Verwirrung?",
+      "disorientation": "Erleben Sie Episoden von Desorientierung?",
+      "personalityChanges": "Haben Sie Veränderungen in Ihrer Persönlichkeit bemerkt?",
+      "taskDifficulty": "Haben Sie Schwierigkeiten, vertraute Aufgaben zu erledigen?",
+      "forgetfulness": "Wie würden Sie Ihr Vergesslichkeit beschreiben?"
+    },
+    "options": {
+      "male": "Männlich",
+      "female": "Weiblich",
+      "other": "Andere",
+      "caucasian": "Kaukasisch",
+      "africanAmerican": "Afroamerikanisch",
+      "asian": "Asiatisch",
+      "hispanic": "Hispanisch",
+      "other": "Andere",
+      "noFormal": "Keine formale",
+      "primary": "Grundschule",
+      "secondary": "Sekundär",
+      "higher": "Höher",
+      "yes": "Ja",
+      "no": "Nein",
+      "rarely": "Selten",
+      "occasionally": "Gelegentlich",
+      "frequently": "Häufig",
+      "constantly": "Ständig"
+    },
+    "notes": {
+      "mmse": "Führen Sie den MMSE-Test auf <a href=\"https://mmse.neurol.ru/\" target=\"_blank\" class=\"text-violet-600 hover:text-violet-800 underline\">mmse.neurol.ru</a> durch und geben Sie hier Ihre Punktzahl ein."
+    }
+  },
+  "results": {
+    "title": "Ihre Bewertungsergebnisse",
+    "analyzing": "Ihre Ergebnisse werden analysiert...",
+    "riskLevels": {
+      "low": "Niedriges Risiko",
+      "medium": "Mittleres Risiko",
+      "high": "Hohes Risiko"
+    },
+    "descriptions": {
+      "low": "Ihre aktuellen Risikofaktoren deuten auf eine geringe Wahrscheinlichkeit hin, an Alzheimer zu erkranken. Fahren Sie fort, gesunde Lebensgewohnheiten beizubehalten.",
+      "medium": "Ihre Bewertung zeigt ein moderates Risikoniveau an. Ziehen Sie in Erwägung, sich von Gesundheitsfachkräften beraten zu lassen.",
+      "high": "Ihre Ergebnisse deuten auf ein erhöhtes Risiko hin. Wir empfehlen dringend, einen Gesundheitsfachmann für eine umfassende Bewertung zu konsultieren."
+    },
+    "recommendations": "Personalisierte Empfehlungen",
+    "share": "Ergebnisse teilen",
+    "retake": "Bewertung wiederholen",
+    "download": "Bericht herunterladen"
+  },
+  "games": {
+    "title": "Gehirntrainingsspiele",
+    "subtitle": "Halten Sie Ihren Geist scharf mit diesen kognitiven Übungen",
+    "memoryMatch": "Gedächtnisspiel",
+    "sequenceRecall": "Sequenzerinnerung",
+    "patternRecognition": "Mustererkennung",
+    "play": "Jetzt spielen",
+    "score": "Punktzahl: {{score}}",
+    "time": "Zeit: {{time}}s"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "submit": "Absenden",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "view": "Ansehen",
+    "language": "Sprache",
+    "english": "Englisch",
+    "spanish": "Spanisch",
+    "french": "Französisch",
+    "german": "Deutsch",
+    "chinese": "Chinesisch"
+  }
+}

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity - Early Alzheimer's Detection</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://esm.run/framer-motion"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50 font-poppins text-slate-800">
+
+    <!-- 3D Transition Background -->
+    <div class="page-transition-bg page-bg-index">
+        <div class="page-particles"></div>
+    </div>
+
+    <div id="app-container" class="relative overflow-x-hidden">
+        <!-- Animated Background -->
+        <div class="absolute top-0 left-0 w-full h-[100vh] bg-gradient-to-br from-violet-100 via-blue-50 to-white -z-10">
+            <div class="absolute inset-0 bg-gradient-to-r from-violet-200/20 via-transparent to-blue-200/20 animate-pulse"></div>
+            <div class="absolute top-20 left-10 w-32 h-32 bg-violet-300/10 rounded-full blur-xl animate-float"></div>
+            <div class="absolute top-40 right-20 w-24 h-24 bg-blue-300/10 rounded-full blur-xl animate-float-delayed"></div>
+            <div class="absolute bottom-20 left-1/4 w-40 h-40 bg-purple-300/10 rounded-full blur-xl animate-float-slow"></div>
+        </div>
+
+        <!-- Floating Icons -->
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none -z-5">
+            <i data-lucide="brain" class="absolute top-20 left-10 w-8 h-8 text-violet-300/30 animate-float-slow"></i>
+            <i data-lucide="activity" class="absolute top-40 right-20 w-6 h-6 text-blue-300/30 animate-float-delayed"></i>
+            <i data-lucide="heart" class="absolute bottom-40 left-20 w-7 h-7 text-pink-300/30 animate-float"></i>
+            <i data-lucide="shield" class="absolute top-60 right-1/4 w-5 h-5 text-green-300/30 animate-float-slow"></i>
+        </div>
+
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg shadow-sm">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-violet-600 flex items-center gap-2">
+                    <i data-lucide="brain-circuit" class="w-7 h-7"></i>
+                    <span>Clarity</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about-alzheimers" class="text-slate-600 hover:text-violet-600 transition-colors">About Alzheimer's</a>
+                    <a href="#features" class="text-slate-600 hover:text-violet-600 transition-colors">Features</a>
+                    <a href="#how-it-works" class="text-slate-600 hover:text-violet-600 transition-colors">How It Works</a>
+                </div>
+                <div class="flex items-center gap-4">
+                     <a href="auth.html" id="login-btn" class="text-slate-600 hover:text-violet-600 transition-colors">Login</a>
+                     <a href="auth.html" id="register-btn" class="px-5 py-2.5 bg-violet-600 text-white rounded-full hover:bg-violet-700 transition-transform hover:scale-105 shadow-lg shadow-violet-200">Get Started</a>
+                     <a href="dashboard.html" id="dashboard-btn" class="hidden px-5 py-2.5 bg-violet-600 text-white rounded-full hover:bg-violet-700 transition-transform hover:scale-105 shadow-lg shadow-violet-200">Dashboard</a>
+                     <button id="logout-btn" class="hidden text-slate-600 hover:text-violet-600 transition-colors">Logout</button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="pt-24">
+            <section class="container mx-auto px-6 py-20 text-center flex flex-col items-center" data-motion="hero">
+                <div class="max-w-4xl">
+                    <div class="mb-8">
+                        <span class="inline-block px-4 py-2 bg-violet-100 text-violet-700 rounded-full text-sm font-medium mb-4 animate-fade-in">
+                            🧠 Trusted by Healthcare Professionals
+                        </span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-violet-600 via-purple-600 to-blue-500 text-transparent bg-clip-text mb-6 animate-slide-up">
+                        Early Detection for a<br class="sm:hidden"> Clearer Tomorrow.
+                        <div class="w-32 h-1 bg-gradient-to-r from-violet-400 to-blue-400 rounded-full animate-pulse mx-auto mt-2"></div>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto animate-slide-up-delayed">
+                        A simple, private, and research-backed questionnaire to assess early signs of cognitive change. Take the first step towards peace of mind.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                        <a href="auth.html" class="group px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-full font-semibold text-lg hover:from-violet-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-violet-200 hover:shadow-2xl hover:shadow-violet-300">
+                            <span class="flex items-center gap-2">
+                                Get Started Free
+                                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                        </a>
+                        <a href="auth.html" class="px-8 py-4 border-2 border-violet-200 text-violet-600 rounded-full font-semibold text-lg hover:bg-violet-50 transition-all duration-300">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <div class="mt-12 text-slate-500">
+                        <span id="total-tests-count" class="font-bold text-violet-600 text-xl">1,100</span>
+                        <span> tests taken worldwide</span>
+                    </div>
+                    <div class="mt-8 bg-white/60 backdrop-blur-lg rounded-3xl p-8 shadow-2xl max-w-4xl mx-auto border border-white/20 animate-slide-up-slow">
+                        <h3 class="text-xl font-bold text-slate-800 mb-8 flex items-center justify-center gap-2">
+                            <i data-lucide="users" class="w-6 h-6 text-violet-600"></i>
+                            Community Impact
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-8 items-center">
+                            <div class="text-center group cursor-pointer" data-stat="detections">
+                                <div class="bg-gradient-to-br from-green-400 to-green-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                    <i data-lucide="check-circle" class="w-10 h-10 text-white"></i>
+                                </div>
+                                <div class="text-4xl font-bold text-green-600 mb-2" id="alzheimers-detected">100</div>
+                                <div class="text-sm text-slate-600 font-medium">Early Detections</div>
+                            </div>
+                            <div class="flex justify-center relative">
+                                <div class="w-40 h-40 relative">
+                                    <canvas id="tests-chart" width="160" height="160" class="drop-shadow-lg"></canvas>
+                                    <div class="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-blue-500/10 rounded-full animate-pulse"></div>
+                                </div>
+                            </div>
+                            <div class="text-center group cursor-pointer" data-stat="healthy">
+                                <div class="bg-gradient-to-br from-blue-400 to-blue-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                    <i data-lucide="heart" class="w-10 h-10 text-white"></i>
+                                </div>
+                                <div class="text-4xl font-bold text-blue-600 mb-2" id="healthy-users">1,000</div>
+                                <div class="text-sm text-slate-600 font-medium">Healthy Users</div>
+                            </div>
+                        </div>
+                        <div class="mt-8 p-4 bg-gradient-to-r from-violet-50 to-blue-50 rounded-2xl border border-violet-100">
+                            <p class="text-sm text-slate-600 text-center flex items-center justify-center gap-2">
+                                <i data-lucide="database" class="w-4 h-4 text-violet-500"></i>
+                                Based on our research dataset of over 2,000 cases
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Key Statistics Section -->
+                    <div class="bg-white/60 backdrop-blur-lg rounded-3xl p-8 shadow-2xl max-w-4xl mx-auto mt-12 mb-12 border border-white/20 animate-slide-up-slow">
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-8 flex items-center justify-center gap-3">
+                            <i data-lucide="bar-chart-3" class="w-6 h-6 md:w-7 md:h-7 text-blue-500"></i>
+                            Understanding the Impact
+                        </h2>
+                        <div class="grid grid-cols-1 gap-8">
+                            <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl border border-purple-200/50 text-center">
+                                <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">4.1M</div>
+                                <div class="text-sm font-semibold text-slate-700 mb-1">People with dementia in India</div>
+                                <div class="text-xs text-slate-500">Source: Alzheimer's Disease International, 2023</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- How It Works Section -->
+            <section id="how-it-works" class="py-20 bg-gradient-to-br from-white via-violet-50/30 to-blue-50/30" data-motion="how-it-works">
+                <div class="container mx-auto px-6 text-center">
+                    <div class="mb-16">
+                        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 text-transparent bg-clip-text">How It Works</h2>
+                        <p class="text-slate-600 max-w-2xl mx-auto text-lg">A simple three-step process to gain insight into your cognitive health.</p>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8 text-left">
+                        <div class="group bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-violet-100/50" data-step="1">
+                            <div class="relative mb-6">
+                                <div class="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-violet-500 to-violet-600 text-white rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="file-text" class="w-10 h-10"></i>
+                                </div>
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">1</div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-slate-800">Take the Test</h3>
+                            <p class="text-slate-600 leading-relaxed">An engaging wizard-style test that's easy to follow and takes just 10 minutes.</p>
+                            <div class="mt-6">
+                                <a href="auth.html" class="inline-flex items-center text-violet-600 font-medium hover:text-violet-700 transition-colors">
+                                    <span>Start Now</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100/50" data-step="2">
+                            <div class="relative mb-6">
+                                <div class="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="bar-chart-3" class="w-10 h-10"></i>
+                                </div>
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">2</div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-slate-800">Get Your Result</h3>
+                            <p class="text-slate-600 leading-relaxed">Our AI analyzes your responses and provides an instant, easy-to-understand risk assessment based on clinical markers.</p>
+                            <div class="mt-6">
+                                <a href="auth.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                                    <span>Learn More</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-green-100/50" data-step="3">
+                            <div class="relative mb-6">
+                                <div class="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="trending-up" class="w-10 h-10"></i>
+                                </div>
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">3</div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-slate-800">Track Your Health</h3>
+                            <p class="text-slate-600 leading-relaxed">Create an account to save your results, track your cognitive health over time, and share your progress with healthcare professionals.</p>
+                            <div class="mt-6">
+                                <a href="auth.html" class="inline-flex items-center text-green-600 font-medium hover:text-green-700 transition-colors">
+                                    <span>Get Started</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-16">
+                        <div class="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg border border-white/50">
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 bg-violet-500 rounded-full border-2 border-white"></div>
+                                <div class="w-8 h-8 bg-blue-500 rounded-full border-2 border-white"></div>
+                                <div class="w-8 h-8 bg-green-500 rounded-full border-2 border-white"></div>
+                            </div>
+                            <span class="text-slate-600 font-medium">Join thousands of users taking control of their health</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- About Alzheimer's Section -->
+            <section id="about-alzheimers" class="py-20 bg-gradient-to-br from-slate-50 via-white to-violet-50/20" data-motion="about-alzheimers">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 text-transparent bg-clip-text">Understanding Alzheimer's Disease</h2>
+                        <p class="text-slate-600 max-w-2xl mx-auto text-lg">Learn about the symptoms, risks, and the critical importance of early detection.</p>
+                    </div>
+
+                    <!-- Symptoms Section -->
+                    <div class="mb-20">
+                        <div class="text-center mb-12">
+                            <h3 class="text-3xl font-bold text-slate-800 mb-4">Common Symptoms</h3>
+                            <p class="text-slate-600 max-w-xl mx-auto">Early recognition of these signs can make a significant difference in treatment outcomes.</p>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-violet-100/50">
+                                <div class="bg-gradient-to-br from-violet-500 to-violet-600 text-white p-4 rounded-2xl w-fit mb-6 shadow-lg">
+                                    <i data-lucide="brain" class="w-8 h-8"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-800 mb-4">Memory Loss</h4>
+                                <ul class="text-slate-600 space-y-2 text-sm">
+                                    <li>• Forgetting recent conversations or events</li>
+                                    <li>• Misplacing items frequently</li>
+                                    <li>• Difficulty remembering names or appointments</li>
+                                    <li>• Repeating questions or stories</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100/50">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-4 rounded-2xl w-fit mb-6 shadow-lg">
+                                    <i data-lucide="message-square" class="w-8 h-8"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-800 mb-4">Communication Issues</h4>
+                                <ul class="text-slate-600 space-y-2 text-sm">
+                                    <li>• Struggling to find the right words</li>
+                                    <li>• Difficulty following conversations</li>
+                                    <li>• Problems with reading or writing</li>
+                                    <li>• Losing train of thought mid-sentence</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-green-100/50">
+                                <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-2xl w-fit mb-6 shadow-lg">
+                                    <i data-lucide="compass" class="w-8 h-8"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-800 mb-4">Disorientation</h4>
+                                <ul class="text-slate-600 space-y-2 text-sm">
+                                    <li>• Getting lost in familiar places</li>
+                                    <li>• Confusion about time or date</li>
+                                    <li>• Difficulty with familiar tasks</li>
+                                    <li>• Problems with spatial relationships</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advantages of Early Detection -->
+                    <div class="mb-20">
+                        <div class="text-center mb-12">
+                            <h3 class="text-3xl font-bold text-slate-800 mb-4">Advantages of Early Detection</h3>
+                            <p class="text-slate-600 max-w-xl mx-auto">Knowing early provides crucial benefits for treatment and quality of life.</p>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl border border-green-200/50">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-3 rounded-xl shadow-lg">
+                                        <i data-lucide="trending-up" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-slate-800 mb-3">Better Treatment Outcomes</h4>
+                                        <p class="text-slate-600 leading-relaxed">Early intervention can slow disease progression and improve cognitive function through medications and lifestyle changes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-3xl border border-blue-200/50">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-3 rounded-xl shadow-lg">
+                                        <i data-lucide="users" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-slate-800 mb-3">Family Planning</h4>
+                                        <p class="text-slate-600 leading-relaxed">More time to plan for future care needs, legal arrangements, and family support systems.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gradient-to-br from-purple-50 to-violet-50 p-8 rounded-3xl border border-purple-200/50">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-3 rounded-xl shadow-lg">
+                                        <i data-lucide="heart" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-slate-800 mb-3">Improved Quality of Life</h4>
+                                        <p class="text-slate-600 leading-relaxed">Access to support services, cognitive training, and lifestyle modifications that enhance daily living.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-8 rounded-3xl border border-orange-200/50">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-3 rounded-xl shadow-lg">
+                                        <i data-lucide="shield" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-slate-800 mb-3">Safety & Prevention</h4>
+                                        <p class="text-slate-600 leading-relaxed">Early identification of safety risks and implementation of preventive measures to maintain independence.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Disadvantages of Late Detection -->
+                    <div class="mb-20">
+                        <div class="text-center mb-12">
+                            <h3 class="text-3xl font-bold text-slate-800 mb-4">Risks of Late Detection</h3>
+                            <p class="text-slate-600 max-w-xl mx-auto">Understanding why early detection matters so much.</p>
+                        </div>
+                        <div class="bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 p-8 rounded-3xl border border-red-200/50">
+                            <div class="grid md:grid-cols-3 gap-8">
+                                <div class="text-center">
+                                    <div class="bg-gradient-to-br from-red-500 to-red-600 text-white p-4 rounded-2xl w-fit mx-auto mb-4 shadow-lg">
+                                        <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-slate-800 mb-2">Missed Treatment Window</h4>
+                                    <p class="text-slate-600 text-sm">Limited effectiveness of available treatments when disease has progressed significantly.</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-2xl w-fit mx-auto mb-4 shadow-lg">
+                                        <i data-lucide="home" class="w-8 h-8"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-slate-800 mb-2">Sudden Care Crisis</h4>
+                                    <p class="text-slate-600 text-sm">Emergency situations requiring immediate institutional care without proper planning.</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white p-4 rounded-2xl w-fit mx-auto mb-4 shadow-lg">
+                                        <i data-lucide="frown" class="w-8 h-8"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-slate-800 mb-2">Reduced Independence</h4>
+                                    <p class="text-slate-600 text-sm">Loss of ability to manage daily activities and make personal decisions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="text-center">
+                        <div class="bg-gradient-to-r from-violet-600 to-purple-600 p-8 rounded-3xl text-white shadow-2xl">
+                            <h3 class="text-2xl font-bold mb-4">Take Control of Your Cognitive Health</h3>
+                            <p class="text-lg mb-6 opacity-90">Early detection is the first step toward maintaining your independence and quality of life.</p>
+                            <a href="auth.html" class="inline-flex items-center gap-2 bg-white text-violet-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <span>Start Your Assessment</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="py-20 bg-gradient-to-br from-slate-50 via-white to-violet-50/20" data-motion="features">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 text-transparent bg-clip-text">Features Designed For You</h2>
+                        <p class="text-slate-600 max-w-2xl mx-auto text-lg">We provide a comprehensive toolset for monitoring and understanding cognitive health.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="space-y-8">
+                            <div class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-violet-100/50" data-feature="questionnaire">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-gradient-to-br from-violet-500 to-violet-600 text-white p-3 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-xl font-bold text-slate-800 mb-2">Interactive Questionnaire</h4>
+                                        <p class="text-slate-600 leading-relaxed">An engaging wizard-style test that's easy to follow and takes just 10 minutes to complete.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100/50" data-feature="dashboard">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-3 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-xl font-bold text-slate-800 mb-2">Personal Dashboard</h4>
+                                        <p class="text-slate-600 leading-relaxed">Track your test history, monitor progress over time, and visualize your cognitive health journey.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/50" data-feature="ai">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-3 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="bot" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-xl font-bold text-slate-800 mb-2">AI Assistant</h4>
+                                        <p class="text-slate-600 leading-relaxed">Get instant answers to your questions with our intelligent chatbot powered by advanced AI.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="bg-white p-6 rounded-3xl shadow-2xl border border-white/50">
+                                <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=2070&auto=format&fit=crop" alt="Doctor showing results to a patient" class="rounded-2xl object-cover w-full h-96">
+                                <div class="absolute inset-0 bg-gradient-to-t from-violet-500/10 via-transparent to-transparent rounded-3xl"></div>
+                            </div>
+                            <div class="absolute -bottom-4 -right-4 bg-gradient-to-br from-violet-500 to-purple-600 text-white px-6 py-3 rounded-2xl shadow-xl">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="star" class="w-5 h-5"></i>
+                                    <span class="font-semibold">Trusted by Doctors</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-slate-300 py-12">
+            <div class="container mx-auto px-6 text-center">
+                <p>&copy; 2025 Clarity. All rights reserved. For informational purposes only.</p>
+            </div>
+        </footer>
+
+        <!-- Chatbot Widget -->
+        <div id="chatbot-container"></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Initialize community impact chart
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load dynamic counts from localStorage
+            const totalTestsEl = document.getElementById('total-tests-count');
+            const alzheimersDetectedEl = document.getElementById('alzheimers-detected');
+            const healthyUsersEl = document.getElementById('healthy-users');
+
+            const totalTests = localStorage.getItem('totalTests') || '1,100';
+            const earlyDetections = localStorage.getItem('earlyDetections') || '100';
+            const healthyUsers = localStorage.getItem('healthyUsers') || '1,000';
+
+            totalTestsEl.textContent = totalTests;
+            alzheimersDetectedEl.textContent = earlyDetections;
+            healthyUsersEl.textContent = healthyUsers;
+
+            // Update chart data based on counts
+            const healthyCount = parseInt(healthyUsers.replace(/,/g, ''));
+            const detectionCount = parseInt(earlyDetections.replace(/,/g, ''));
+            const totalCount = healthyCount + detectionCount;
+
+            const ctx = document.getElementById('tests-chart').getContext('2d');
+            const testsChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Low Risk', 'No Risk'],
+                    datasets: [{
+                        data: [detectionCount, healthyCount],
+                        backgroundColor: ['#10b981', '#3b82f6'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <script type="module" src="js/page-transitions.js"></script>
+    <script type="module" src="js/i18n.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

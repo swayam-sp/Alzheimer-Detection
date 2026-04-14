@@ -1,0 +1,144 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "assessment": "Évaluation",
+    "dashboard": "Tableau de Bord",
+    "games": "Jeux Cérébraux",
+    "about": "À Propos"
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "logout": "Déconnexion",
+    "email": "E-mail",
+    "password": "Mot de Passe",
+    "confirmPassword": "Confirmer le Mot de Passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "loginTitle": "Bienvenue",
+    "registerTitle": "Créer un Compte",
+    "loginSubtitle": "Connectez-vous à votre compte",
+    "registerSubtitle": "Rejoignez notre communauté",
+    "loginButton": "Se Connecter",
+    "registerButton": "Créer un Compte",
+    "loading": "Chargement...",
+    "errors": {
+      "invalidCredentials": "E-mail ou mot de passe invalide",
+      "emailExists": "L'e-mail existe déjà",
+      "weakPassword": "Le mot de passe est trop faible",
+      "networkError": "Erreur réseau. Veuillez réessayer."
+    }
+  },
+  "questionnaire": {
+    "title": "Évaluation du Risque d'Alzheimer",
+    "subtitle": "Complétez cette évaluation complète pour comprendre vos facteurs de risque",
+    "start": "Commencer l'Évaluation",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre l'Évaluation",
+    "progress": "Étape {{current}} sur {{total}}",
+    "categories": {
+      "demographic": "Informations Personnelles",
+      "lifestyle": "Facteurs de Style de Vie",
+      "medical": "Antécédents Médicaux",
+      "cognitive": "Évaluation Cognitive"
+    },
+    "questions": {
+      "age": "Quel âge avez-vous ?",
+      "gender": "Quel est votre genre ?",
+      "ethnicity": "Quelle est votre ethnicité ?",
+      "education": "Quel est votre niveau d'éducation le plus élevé ?",
+      "bmi": "Quel est votre IMC ?",
+      "smoking": "Fumez-vous ?",
+      "alcohol": "Combien de verres d'alcool consommez-vous par semaine ?",
+      "physicalActivity": "Combien d'heures d'activité physique faites-vous par semaine ?",
+      "dietQuality": "Sur une échelle de 1 à 10, comment évalueriez-vous la qualité de votre alimentation ?",
+      "sleepQuality": "Sur une échelle de 1 à 10, comment évalueriez-vous la qualité de votre sommeil ?",
+      "familyHistory": "Avez-vous des antécédents familiaux d'Alzheimer ?",
+      "cardiovascular": "Avez-vous été diagnostiqué avec une maladie cardiovasculaire ?",
+      "diabetes": "Avez-vous été diagnostiqué avec le diabète ?",
+      "depression": "Avez-vous été diagnostiqué avec une dépression ?",
+      "headInjury": "Avez-vous eu une blessure à la tête significative ?",
+      "hypertension": "Avez-vous été diagnostiqué avec l'hypertension ?",
+      "mmse": "Quel est votre score MMSE ?",
+      "memoryComplaints": "Ressentez-vous des plaintes fréquentes de mémoire ?",
+      "behavioralProblems": "D'autres ont-ils remarqué des problèmes de comportement ?",
+      "confusion": "Ressentez-vous des épisodes de confusion ?",
+      "disorientation": "Ressentez-vous des épisodes de désorientation ?",
+      "personalityChanges": "Avez-vous remarqué des changements dans votre personnalité ?",
+      "taskDifficulty": "Avez-vous des difficultés à accomplir des tâches familières ?",
+      "forgetfulness": "Comment décririez-vous votre oubli ?"
+    },
+    "options": {
+      "male": "Masculin",
+      "female": "Féminin",
+      "other": "Autre",
+      "caucasian": "Caucasien",
+      "africanAmerican": "Afro-américain",
+      "asian": "Asiatique",
+      "hispanic": "Hispanique",
+      "other": "Autre",
+      "noFormal": "Aucune formation",
+      "primary": "Primaire",
+      "secondary": "Secondaire",
+      "higher": "Supérieur",
+      "yes": "Oui",
+      "no": "Non",
+      "rarely": "Rarement",
+      "occasionally": "Occasionnellement",
+      "frequently": "Fréquemment",
+      "constantly": "Constantement"
+    },
+    "notes": {
+      "mmse": "Effectuez le test MMSE sur <a href=\"https://mmse.neurol.ru/\" target=\"_blank\" class=\"text-violet-600 hover:text-violet-800 underline\">mmse.neurol.ru</a> et saisissez votre score ici."
+    }
+  },
+  "results": {
+    "title": "Vos Résultats d'Évaluation",
+    "analyzing": "Analyse de vos résultats...",
+    "riskLevels": {
+      "low": "Risque Faible",
+      "medium": "Risque Moyen",
+      "high": "Risque Élevé"
+    },
+    "descriptions": {
+      "low": "Vos facteurs de risque actuels suggèrent une faible probabilité de développer la maladie d'Alzheimer. Continuez à maintenir des habitudes de vie saines.",
+      "medium": "Votre évaluation indique un niveau de risque modéré. Envisagez de consulter des professionnels de santé pour des conseils personnalisés.",
+      "high": "Vos résultats suggèrent un risque élevé. Nous recommandons fortement de consulter un professionnel de santé pour une évaluation complète."
+    },
+    "recommendations": "Recommandations Personnalisées",
+    "share": "Partager les Résultats",
+    "retake": "Refaire l'Évaluation",
+    "download": "Télécharger le Rapport"
+  },
+  "games": {
+    "title": "Jeux d'Entraînement Cérébral",
+    "subtitle": "Gardez votre esprit vif avec ces exercices cognitifs",
+    "memoryMatch": "Correspondance Mémoire",
+    "sequenceRecall": "Rappel de Séquence",
+    "patternRecognition": "Reconnaissance de Motifs",
+    "play": "Jouer Maintenant",
+    "score": "Score : {{score}}",
+    "time": "Temps : {{time}}s"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Soumettre",
+    "save": "Sauvegarder",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "view": "Voir",
+    "language": "Langue",
+    "english": "Anglais",
+    "spanish": "Espagnol",
+    "french": "Français",
+    "german": "Allemand",
+    "chinese": "Chinois"
+  }
+}

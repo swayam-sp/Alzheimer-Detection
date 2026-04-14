@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Result - Clarity</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+</head>
+<body class="bg-slate-100 font-poppins text-slate-800">
+
+    <!-- 3D Transition Background -->
+    <div class="page-transition-bg page-bg-high-risk">
+        <div class="page-particles"></div>
+    </div>
+
+    <!-- Hero Background -->
+    <div class="fixed inset-0 bg-gradient-to-br from-violet-900 via-purple-900 to-indigo-900 opacity-90"></div>
+    <div class="fixed inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+
+    <div class="relative min-h-screen flex items-center justify-center p-4 md:p-8">
+        <!-- Processing Container -->
+        <div id="processing-container" class="w-full max-w-2xl text-center animate-fade-in">
+            <div class="bg-white/95 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl border border-white/20">
+                <div class="mb-6">
+                    <div class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-violet-400 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                        <i data-lucide="brain-circuit" class="w-10 h-10 md:w-12 md:h-12 text-white animate-pulse"></i>
+                    </div>
+                    <h1 class="text-2xl md:text-4xl font-black mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">Analyzing Your Results</h1>
+                    <p class="text-slate-600 text-lg mb-6">Processing your cognitive assessment...</p>
+                </div>
+
+                <div class="space-y-4 text-left max-w-md mx-auto">
+                    <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                        <div class="w-3 h-3 bg-violet-500 rounded-full animate-pulse"></div>
+                        <span class="text-slate-700 font-medium">Processing Data</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                        <div class="w-3 h-3 bg-purple-500 rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
+                        <span class="text-slate-700 font-medium">Analyzing Patterns</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                        <div class="w-3 h-3 bg-indigo-500 rounded-full animate-pulse" style="animation-delay: 1s"></div>
+                        <span class="text-slate-700 font-medium">Calculating Risk</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 1.5s"></div>
+                        <span class="text-slate-700 font-medium">Generating Report</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full max-w-6xl mx-auto" id="results-container" style="display: none;">
+            <!-- Header -->
+            <div class="text-center mb-8 animate-fade-in">
+                <a href="index.html" class="inline-flex items-center gap-3 text-4xl md:text-5xl font-black text-white hover:text-violet-200 transition-all duration-300 transform hover:scale-105">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-violet-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl">
+                        <i data-lucide="brain-circuit" class="w-7 h-7 md:w-9 md:h-9 text-white"></i>
+                    </div>
+                    <span class="bg-gradient-to-r from-white to-violet-200 bg-clip-text text-transparent">Clarity</span>
+                </a>
+                <p class="text-violet-200 text-lg md:text-xl mt-2 font-medium">Your Cognitive Health Assessment</p>
+            </div>
+
+            <!-- Result Card -->
+            <div id="result-card" class="bg-white backdrop-blur-xl p-6 md:p-12 rounded-3xl shadow-2xl border border-white/20 space-y-8 md:space-y-12 animate-slide-up">
+                <!-- Icon and Title -->
+                <div class="text-center animate-fade-in-up">
+                    <div class="relative mb-6">
+                        <div class="absolute inset-0 bg-gradient-to-r from-violet-400 to-purple-600 rounded-full blur-xl opacity-30 animate-pulse"></div>
+                        <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto bg-gradient-to-br from-white to-violet-50 shadow-2xl border-4 border-white/50" id="icon-container">
+                            <i id="result-icon" class="w-10 h-10 md:w-12 md:h-12"></i>
+                        </div>
+                    </div>
+                    <h1 id="result-title" class="text-3xl md:text-5xl font-black mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent"></h1>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+                        <p class="text-lg md:text-xl font-bold text-slate-700 mb-3">Probability of Alzheimer's: <span id="probability-text" class="font-black text-2xl md:text-3xl"></span></p>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <p id="result-description" class="text-slate-600 text-base md:text-lg leading-relaxed text-center max-w-2xl mx-auto">
+                        Your results indicate a potential risk. It's important to remember this is not a diagnosis. We strongly recommend consulting a healthcare professional to discuss your results.
+                    </p>
+                </div>
+
+
+
+                <!-- Motivational Message Box -->
+                <div id="motivational-box" class="border rounded-xl p-6 bg-gradient-to-r from-blue-50 to-purple-50">
+                    <p id="motivational-text" class="font-semibold text-center text-base md:text-lg text-slate-800">
+                        Knowledge is power. Taking this step shows you're proactive about your health!
+                    </p>
+                </div>
+
+
+
+                <!-- Risk Factors -->
+                <div class="animate-fade-in-up animation-delay-200">
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <i data-lucide="alert-circle" class="w-5 h-5 md:w-6 md:h-6 text-orange-500"></i>
+                        Key Risk Factors
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 border border-orange-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="user-x" class="w-6 h-6 text-orange-600"></i>
+                                </div>
+                                <h3 class="font-bold text-orange-800 text-lg">Non-Modifiable</h3>
+                            </div>
+                            <ul class="text-orange-700 space-y-2 text-sm md:text-base">
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-orange-500 rounded-full"></span>Age (65+)</li>
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-orange-500 rounded-full"></span>Family history</li>
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-orange-500 rounded-full"></span>Genetics (<span class="underline cursor-help" data-tippy-content="Apolipoprotein E (APOE) is a gene that provides instructions for making a protein involved in fat metabolism. The APOE ε4 variant is the strongest genetic risk factor for Alzheimer's disease, increasing risk by 3-8 times depending on whether one or two copies are inherited.">APOE ε4</span>)</li>
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-orange-500 rounded-full"></span>Down syndrome</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="settings" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <h3 class="font-bold text-green-800 text-lg">Modifiable</h3>
+                            </div>
+                            <ul class="text-green-700 space-y-2 text-sm md:text-base">
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Cardiovascular disease</li>
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Diabetes & hypertension</li>
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Smoking & alcohol</li>
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Physical inactivity</li>
+                                <li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Poor diet & sleep</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Helpful Tips Section -->
+                <div id="tips-section" class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 md:p-6">
+                    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('tips-content')">
+                        <h2 class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
+                            <i data-lucide="lightbulb" class="w-5 h-5 md:w-6 md:h-6 text-yellow-500"></i>
+                            Helpful Tips & Next Steps
+                        </h2>
+                        <i id="tips-toggle-icon" data-lucide="chevron-down" class="w-5 h-5 text-slate-600 transition-transform duration-300"></i>
+                    </div>
+                    <div id="tips-content" class="space-y-3 mt-4 transition-all duration-300 ease-in-out">
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-800">Schedule a Doctor's Appointment</span>
+                                <p class="text-slate-600 text-sm">Consult a healthcare professional for a comprehensive evaluation and personalized advice</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-800">Keep a Health Journal</span>
+                                <p class="text-slate-600 text-sm">Track any symptoms, memory issues, or changes you notice for discussions with your doctor</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-800">Discuss Family History</span>
+                                <p class="text-slate-600 text-sm">Share information about relatives with Alzheimer's or dementia with your healthcare provider</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-800">Maintain Healthy Lifestyle</span>
+                                <p class="text-slate-600 text-sm">Regular exercise, balanced diet, quality sleep, and social engagement can support brain health</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-800">Consider Cognitive Exercises</span>
+                                <p class="text-slate-600 text-sm">Engage in brain-training activities like puzzles, reading, or learning new skills</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-800">Stay Socially Active</span>
+                                <p class="text-slate-600 text-sm">Maintain strong relationships and participate in community activities</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-800">Schedule regular check-ups</span>
+                                <p class="text-slate-600 text-sm">Continue with your healthcare provider for routine monitoring</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-800">Monitor your health</span>
+                                <p class="text-slate-600 text-sm">Keep track of any changes and consider retaking the test periodically</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prevention Strategies -->
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="shield" class="w-5 h-5 md:w-6 md:h-6 text-green-500"></i>
+                        Prevention Strategies
+                    </h2>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6">
+                        <p class="text-green-800 mb-4 font-medium text-sm md:text-base">While there's no guaranteed prevention, research shows these strategies may help reduce risk:</p>
+                        <div class="grid md:grid-cols-2 gap-4 text-xs md:text-sm">
+                            <div>
+                                <h4 class="font-semibold text-green-800 mb-2 text-sm md:text-base">Physical Health</h4>
+                                <ul class="text-green-700 space-y-1">
+                                    <li>• Regular aerobic exercise (150 min/week)</li>
+                                    <li>• Manage cardiovascular health</li>
+                                    <li>• Control blood pressure & cholesterol</li>
+                                    <li>• Maintain healthy weight</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-green-800 mb-2 text-sm md:text-base">Lifestyle Factors</h4>
+                                <ul class="text-green-700 space-y-1">
+                                    <li>• Mediterranean-style diet</li>
+                                    <li>• Quality sleep (7-9 hours/night)</li>
+                                    <li>• Limit alcohol & avoid smoking</li>
+                                    <li>• Mental stimulation & learning</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bad Habits to Address for Alzheimer's Prevention -->
+                <div id="habits-section">
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 md:w-6 md:h-6 text-red-500"></i>
+                        Bad Habits to Address for Alzheimer's Prevention
+                    </h2>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 md:p-6">
+                        <p class="text-red-800 mb-6 font-medium text-sm md:text-base">Based on your questionnaire responses, here are the bad habits that may be increasing your Alzheimer's risk:</p>
+                        <div id="habits-container" class="grid md:grid-cols-2 gap-6">
+                            <!-- Habits will be populated by JavaScript based on questionnaire answers -->
+                        </div>
+                        <div class="mt-6 p-4 bg-red-100 rounded-lg border border-red-300">
+                            <p class="text-red-800 text-sm font-medium text-center">Remember: Addressing these bad habits can significantly reduce your Alzheimer's risk. Small changes add up.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Factors to Focus On -->
+                <div id="key-factors-section">
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <i data-lucide="target" class="w-5 h-5 md:w-6 md:h-6 text-blue-500"></i>
+                        Key Factors to Focus On
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Lifestyle Factors Container -->
+                        <div id="lifestyle-container" class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 shadow-sm">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="activity" class="w-5 h-5 text-blue-600"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-blue-800">Lifestyle Factors</h3>
+                            </div>
+                            <div id="lifestyle-factors" class="space-y-3">
+                                <!-- Factors will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Medical Factors Container -->
+                        <div id="medical-container" class="bg-gradient-to-br from-red-50 to-pink-50 border border-red-200 rounded-xl p-6 shadow-sm">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="heart" class="w-5 h-5 text-red-600"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-red-800">Medical Factors</h3>
+                            </div>
+                            <div id="medical-factors" class="space-y-3">
+                                <!-- Factors will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Cognitive Factors Container -->
+                        <div id="cognitive-container" class="bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-200 rounded-xl p-6 shadow-sm">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="brain" class="w-5 h-5 text-purple-600"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-purple-800">Cognitive Factors</h3>
+                            </div>
+                            <div id="cognitive-factors" class="space-y-3">
+                                <!-- Factors will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Resources -->
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="heart" class="w-5 h-5 md:w-6 md:h-6 text-red-500"></i>
+                        Support Resources
+                    </h2>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 md:p-6">
+                        <p class="text-red-800 mb-4 font-medium text-sm md:text-base">You're not alone. Here are trusted organizations that can provide support, information, and guidance:</p>
+                        <div class="grid md:grid-cols-2 gap-4 text-xs md:text-sm">
+                            <div>
+                                <h4 class="font-semibold text-red-800 mb-2 text-sm md:text-base">Alzheimer's and Related Disorders Society of India (ARDSI)</h4>
+                                <p class="text-red-700 mb-1">Helpline: 1800-11-6677</p>
+                                <p class="text-red-700">Website: ardsi.org</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-red-800 mb-2 text-sm md:text-base">Indian Council of Medical Research (ICMR)</h4>
+                                <p class="text-red-700 mb-1">Research and support for neurological disorders</p>
+                                <p class="text-red-700">Website: icmr.gov.in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-center gap-6 pt-4">
+                    <button onclick="downloadReport()" class="px-8 py-4 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-green-200 flex items-center gap-3 text-lg">
+                        <i data-lucide="download" class="w-6 h-6"></i>
+                        Download Report
+                    </button>
+                    <button onclick="window.location.href='dashboard.html'" class="px-8 py-4 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-blue-200 flex items-center gap-3 text-lg">
+                        <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+                        Go to Dashboard
+                    </button>
+                    <button onclick="window.location.href='test.html'" class="px-8 py-4 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-3 text-lg">
+                        <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+                        Retake Test
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="module" src="js/i18n.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Get result data from URL parameters or localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        let resultData = {};
+        try {
+            const resultString = urlParams.get('result') || localStorage.getItem('assessmentResult') || '{}';
+            resultData = JSON.parse(resultString);
+            if (typeof resultData !== 'object' || resultData === null) {
+                resultData = {};
+            }
+        } catch (e) {
+            console.error('Error parsing result data:', e);
+            resultData = {};
+        }
+
+        // Update page content based on result
+        function updateResultPage(result) {
+            if (!result || typeof result !== 'object' || !result.risk_level) {
+                // Show error message if no valid result data
+                document.getElementById('result-description').textContent = 'Unable to load result data. Please try taking the test again.';
+                return;
+            }
+
+            const risk_level = result.risk_level;
+            let probability = result.probability;
+            let bad_habits_percentage = result.bad_habits_percentage;
+
+            // Set default probabilities based on risk level if not provided
+            if (probability === undefined || probability === null) {
+                if (risk_level === 'High Risk') {
+                    probability = 0.75; // 75% for high risk
+                } else if (risk_level === 'Low Risk') {
+                    probability = 0.25; // 25% for low risk
+                } else {
+                    probability = 0.05; // 5% for no risk
+                }
+            }
+
+            const probPercent = probability * 100;
+            const badHabitsPercent = bad_habits_percentage || 0;
+
+            // Update title
+            document.getElementById('page-title').textContent = `${risk_level} - Clarity`;
+
+            // Update icon and colors
+            const iconContainer = document.getElementById('icon-container');
+            const resultIcon = document.getElementById('result-icon');
+            const resultCard = document.getElementById('result-card');
+            const motivationalBox = document.getElementById('motivational-box');
+
+            if (risk_level === 'High Risk') {
+                resultIcon.setAttribute('data-lucide', 'alert-triangle');
+                iconContainer.className = 'w-24 h-24 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-6';
+                resultIcon.className = 'w-12 h-12 text-red-500';
+                resultCard.className = 'bg-white p-12 rounded-3xl shadow-2xl border border-red-100 space-y-8';
+                motivationalBox.className = 'bg-red-50 border border-red-200 rounded-xl p-6';
+                document.getElementById('result-title').className = 'text-4xl font-bold mb-4 text-red-500';
+                document.getElementById('probability-text').className = 'text-red-600 font-bold';
+                document.getElementById('motivational-text').className = 'text-red-800 font-semibold text-center text-lg';
+            } else if (risk_level === 'Low Risk') {
+                resultIcon.setAttribute('data-lucide', 'alert-circle');
+                iconContainer.className = 'w-24 h-24 rounded-full bg-yellow-100 flex items-center justify-center mx-auto mb-6';
+                resultIcon.className = 'w-12 h-12 text-yellow-500';
+                resultCard.className = 'bg-white p-12 rounded-3xl shadow-2xl border border-yellow-100 space-y-8';
+                motivationalBox.className = 'bg-yellow-50 border border-yellow-200 rounded-xl p-6';
+                document.getElementById('result-title').className = 'text-4xl font-bold mb-4 text-yellow-500';
+                document.getElementById('probability-text').className = 'text-yellow-600 font-bold';
+                document.getElementById('motivational-text').className = 'text-yellow-800 font-semibold text-center text-lg';
+            } else { // No Risk
+                resultIcon.setAttribute('data-lucide', 'check-circle-2');
+                iconContainer.className = 'w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6';
+                resultIcon.className = 'w-12 h-12 text-green-500';
+                resultCard.className = 'bg-white p-12 rounded-3xl shadow-2xl border border-green-100 space-y-8';
+                motivationalBox.className = 'bg-green-50 border border-green-200 rounded-xl p-6';
+                document.getElementById('result-title').className = 'text-4xl font-bold mb-4 text-green-500';
+                document.getElementById('probability-text').className = 'text-green-600 font-bold';
+                document.getElementById('motivational-text').className = 'text-green-800 font-semibold text-center text-lg';
+            }
+
+            // Update title and probability
+            document.getElementById('result-title').textContent = `${risk_level} Detected`;
+            document.getElementById('probability-text').textContent = `${probPercent}%`;
+
+            // Update description
+            const descriptions = {
+                'High Risk': "Your results indicate a potential risk. It's important to remember this is not a diagnosis. We strongly recommend consulting a healthcare professional to discuss your results.",
+                'Low Risk': "Your results indicate a low risk based on the provided answers. Continue to monitor your cognitive health and consider retaking the test periodically.",
+                'No Risk': "Your results indicate no significant risk based on the provided answers. Continue maintaining your healthy lifestyle to support cognitive health."
+            };
+            document.getElementById('result-description').textContent = descriptions[risk_level] || descriptions['No Risk'];
+
+            // Update motivational message
+            const messages = {
+                'High Risk': "Knowledge is power. Taking this step shows you're proactive about your health!",
+                'Low Risk': "Great job! Your proactive approach to health is commendable.",
+                'No Risk': "Excellent! Your healthy habits are supporting your cognitive well-being."
+            };
+            document.getElementById('motivational-text').textContent = messages[risk_level] || messages['No Risk'];
+
+            // Update tips - same for all risk levels
+            const tipsContent = document.getElementById('tips-content');
+            const tips = [
+                { title: "Schedule a Doctor's Appointment", desc: "Consult a healthcare professional for a comprehensive evaluation and personalized advice" },
+                { title: "Keep a Health Journal", desc: "Track any symptoms, memory issues, or changes you notice for discussions with your doctor" },
+                { title: "Discuss Family History", desc: "Share information about relatives with Alzheimer's or dementia with your healthcare provider" },
+                { title: "Maintain Healthy Lifestyle", desc: "Regular exercise, balanced diet, quality sleep, and social engagement can support brain health" },
+                { title: "Consider Cognitive Exercises", desc: "Engage in brain-training activities like puzzles, reading, or learning new skills" },
+                { title: "Stay Socially Active", desc: "Maintain strong relationships and participate in community activities" },
+                { title: "Schedule regular check-ups", desc: "Continue with your healthcare provider for routine monitoring" },
+                { title: "Monitor your health", desc: "Keep track of any changes and consider retaking the test periodically" }
+            ];
+
+            const selectedTips = tips;
+            tipsContent.innerHTML = selectedTips.map(tip => `
+                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                    <div>
+                        <span class="font-medium text-slate-800">${tip.title}</span>
+                        <p class="text-slate-600 text-sm">${tip.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Get stored answers for key factors
+            const answers = JSON.parse(localStorage.getItem('assessmentAnswers') || '{}');
+
+            // Calculate bad habits percentage based on questionnaire answers
+            let badHabitsCount = 0;
+            if (answers.smoking) badHabitsCount++;
+            if (answers.physical_activity < 3) badHabitsCount++;
+            if (answers.diet_quality < 5) badHabitsCount++;
+            if (answers.sleep_quality < 5) badHabitsCount++;
+            if (answers.alcohol_consumption > 14) badHabitsCount++;
+            bad_habits_percentage = (badHabitsCount / 5) * 100;
+
+            // Populate Key Factors containers
+            populateKeyFactors(answers);
+
+            // Populate Habits containers
+            populateHabits(answers);
+
+            // Re-initialize icons for dynamically added content
+            lucide.createIcons();
+        }
+
+        // Function to populate Key Factors containers
+        function populateKeyFactors(answers) {
+            if (!answers || typeof answers !== 'object') {
+                return;
+            }
+
+            // Get container elements
+            const lifestyleContainer = document.getElementById('lifestyle-factors');
+            const medicalContainer = document.getElementById('medical-factors');
+            const cognitiveContainer = document.getElementById('cognitive-factors');
+
+            // Initialize arrays for factors
+            let lifestyleFactors = [];
+            let medicalFactors = [];
+            let cognitiveFactors = [];
+
+            // Check Lifestyle Factors
+            if (answers.smoking) {
+                lifestyleFactors.push({
+                    icon: 'cigarette',
+                    title: 'Smoking Cessation',
+                    desc: 'Quit smoking - smoking significantly increases Alzheimer\'s risk'
+                });
+            }
+            if (answers.physical_activity < 3) {
+                lifestyleFactors.push({
+                    icon: 'activity',
+                    title: 'Physical Activity',
+                    desc: 'Increase physical activity to at least 3 hours per week'
+                });
+            }
+            if (answers.diet_quality < 5) {
+                lifestyleFactors.push({
+                    icon: 'apple',
+                    title: 'Diet Quality',
+                    desc: 'Improve diet quality with Mediterranean-style eating'
+                });
+            }
+            if (answers.sleep_quality < 5) {
+                lifestyleFactors.push({
+                    icon: 'moon',
+                    title: 'Sleep Quality',
+                    desc: 'Aim for 7-9 hours of quality sleep per night'
+                });
+            }
+            if (answers.alcohol_consumption > 14) {
+                lifestyleFactors.push({
+                    icon: 'wine',
+                    title: 'Alcohol Consumption',
+                    desc: 'Reduce alcohol intake to no more than 1 drink per day'
+                });
+            }
+
+            // Check Medical Factors
+            if (answers.cardiovascular_disease) {
+                medicalFactors.push({
+                    icon: 'heart',
+                    title: 'Cardiovascular Health',
+                    desc: 'Continue managing cardiovascular disease - heart health is closely linked to brain health'
+                });
+            }
+            if (answers.diabetes) {
+                medicalFactors.push({
+                    icon: 'droplet',
+                    title: 'Diabetes Management',
+                    desc: 'Maintain good blood sugar control - diabetes increases Alzheimer\'s risk'
+                });
+            }
+            if (answers.hypertension) {
+                medicalFactors.push({
+                    icon: 'activity',
+                    title: 'Hypertension Control',
+                    desc: 'Keep blood pressure under control - high blood pressure affects brain health'
+                });
+            }
+            if (answers.depression) {
+                medicalFactors.push({
+                    icon: 'brain',
+                    title: 'Mental Health',
+                    desc: 'Continue managing depression - mental health treatment can improve cognitive outcomes'
+                });
+            }
+            if (answers.head_injury) {
+                medicalFactors.push({
+                    icon: 'shield-alert',
+                    title: 'Head Injury Monitoring',
+                    desc: 'Monitor for any new symptoms - previous head injuries can increase Alzheimer\'s risk'
+                });
+            }
+
+            // Check Cognitive Factors
+            if (answers.memory_complaints || answers.behavioral_problems || answers.confusion ||
+                answers.disorientation || answers.personality_changes || answers.difficulty_completing_tasks) {
+                cognitiveFactors.push({
+                    icon: 'search',
+                    title: 'Cognitive Symptoms',
+                    desc: 'Monitor cognitive symptoms closely and discuss with healthcare provider'
+                });
+            }
+            if (answers.mmse_score < 24) {
+                cognitiveFactors.push({
+                    icon: 'bar-chart-3',
+                    title: 'MMSE Score',
+                    desc: 'Low MMSE score suggests need for professional cognitive evaluation'
+                });
+            }
+            if (answers.family_history_alzheimers) {
+                cognitiveFactors.push({
+                    icon: 'users',
+                    title: 'Family History',
+                    desc: 'Family history increases risk - regular monitoring and early intervention are important'
+                });
+            }
+            if (answers.education_level === "No formal" || answers.education_level === "Primary") {
+                cognitiveFactors.push({
+                    icon: 'book-open',
+                    title: 'Cognitive Reserve',
+                    desc: 'Consider cognitive exercises and learning new skills to build cognitive reserve'
+                });
+            }
+
+            // Function to create factor HTML
+            function createFactorHTML(factors) {
+                if (factors.length === 0) {
+                    return '<p class="text-slate-500 text-sm italic">No specific factors identified</p>';
+                }
+                return factors.map(factor => `
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-slate-200 shadow-sm">
+                        <i data-lucide="${factor.icon}" class="w-4 h-4 text-slate-600 mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <span class="font-medium text-slate-800 text-sm">${factor.title}</span>
+                            <p class="text-slate-600 text-xs mt-1">${factor.desc}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Populate containers
+            lifestyleContainer.innerHTML = createFactorHTML(lifestyleFactors);
+            medicalContainer.innerHTML = createFactorHTML(medicalFactors);
+            cognitiveContainer.innerHTML = createFactorHTML(cognitiveFactors);
+
+            // Hide containers if no factors
+            document.getElementById('lifestyle-container').style.display = lifestyleFactors.length > 0 ? 'block' : 'none';
+            document.getElementById('medical-container').style.display = medicalFactors.length > 0 ? 'block' : 'none';
+            document.getElementById('cognitive-container').style.display = cognitiveFactors.length > 0 ? 'block' : 'none';
+
+            // If no factors at all, show a message
+            if (lifestyleFactors.length === 0 && medicalFactors.length === 0 && cognitiveFactors.length === 0) {
+                document.getElementById('key-factors-section').innerHTML = `
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 md:w-6 md:h-6 text-green-500"></i>
+                        Key Factors to Focus On
+                    </h2>
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+                        <i data-lucide="check-circle" class="w-12 h-12 text-green-500 mx-auto mb-4"></i>
+                        <h3 class="text-lg font-bold text-green-800 mb-2">Excellent Profile!</h3>
+                        <p class="text-green-700">Your responses indicate excellent health practices across all categories. Continue maintaining your healthy lifestyle to support cognitive well-being.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Function to populate Habits containers based on questionnaire answers
+        function populateHabits(answers) {
+            if (!answers || typeof answers !== 'object') {
+                return;
+            }
+
+            const habitsContainer = document.getElementById('habits-container');
+            let habits = [];
+
+            // Add habits based on answers
+            if (answers.smoking) {
+                habits.push({
+                    icon: 'cigarette',
+                    title: 'Quit Smoking',
+                    desc: 'Smoking significantly increases Alzheimer\'s risk. Seek support to quit smoking completely.'
+                });
+            }
+            if (answers.physical_activity < 3) {
+                habits.push({
+                    icon: 'activity',
+                    title: 'Increase Physical Activity',
+                    desc: 'Aim for at least 150 minutes of moderate aerobic activity weekly. Walking, swimming, or cycling are excellent choices.'
+                });
+            }
+            if (answers.diet_quality < 5) {
+                habits.push({
+                    icon: 'apple',
+                    title: 'Improve Diet Quality',
+                    desc: 'Adopt a Mediterranean-style diet rich in fruits, vegetables, whole grains, fish, and healthy fats.'
+                });
+            }
+            if (answers.sleep_quality < 5) {
+                habits.push({
+                    icon: 'moon',
+                    title: 'Prioritize Quality Sleep',
+                    desc: 'Aim for 7-9 hours of quality sleep per night. Maintain a consistent sleep schedule.'
+                });
+            }
+            if (answers.alcohol_consumption > 14) {
+                habits.push({
+                    icon: 'wine',
+                    title: 'Reduce Alcohol Consumption',
+                    desc: 'Limit alcohol to no more than one drink per day for women and two for men.'
+                });
+            }
+
+            // Always include general habits
+            habits.push({
+                icon: 'brain',
+                title: 'Keep Your Mind Active',
+                desc: 'Challenge your brain with puzzles, reading, learning new skills, or playing musical instruments.'
+            });
+            habits.push({
+                icon: 'users',
+                title: 'Stay Socially Connected',
+                desc: 'Maintain strong relationships with family and friends. Join clubs or volunteer regularly.'
+            });
+            habits.push({
+                icon: 'stethoscope',
+                title: 'Regular Health Monitoring',
+                desc: 'Schedule regular check-ups to monitor blood pressure, cholesterol, diabetes, and other conditions.'
+            });
+
+            // If no specific habits from answers, show general ones
+            if (habits.length === 3) { // Only the general ones
+                habits = [
+                    {
+                        icon: 'activity',
+                        title: 'Stay Physically Active',
+                        desc: 'Regular exercise supports brain health.'
+                    },
+                    {
+                        icon: 'apple',
+                        title: 'Eat a Brain-Healthy Diet',
+                        desc: 'Focus on nutritious foods that support cognitive function.'
+                    },
+                    {
+                        icon: 'brain',
+                        title: 'Keep Your Mind Active',
+                        desc: 'Engage in cognitive activities daily.'
+                    },
+                    {
+                        icon: 'users',
+                        title: 'Stay Socially Connected',
+                        desc: 'Maintain social relationships for mental well-being.'
+                    },
+                    {
+                        icon: 'moon',
+                        title: 'Prioritize Quality Sleep',
+                        desc: 'Ensure adequate rest for brain recovery.'
+                    },
+                    {
+                        icon: 'stethoscope',
+                        title: 'Regular Health Monitoring',
+                        desc: 'Monitor your health regularly.'
+                    }
+                ];
+            }
+
+            habitsContainer.innerHTML = habits.map(habit => `
+                <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-emerald-200 shadow-sm">
+                    <i data-lucide="${habit.icon}" class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                    <div>
+                        <span class="font-semibold text-emerald-800 text-sm">${habit.title}</span>
+                        <p class="text-emerald-700 text-xs mt-1">${habit.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Show processing screen initially
+        document.getElementById('processing-container').style.display = 'block';
+        document.getElementById('results-container').style.display = 'none';
+
+        // Simulate quick processing and show results after minimal delay
+        setTimeout(() => {
+            document.getElementById('processing-container').style.display = 'none';
+            document.getElementById('results-container').style.display = 'block';
+
+            // Update page content and initialize visualizations
+            updateResultPage(resultData);
+            initializeDataVisualizations(resultData);
+        }, 500); // 500ms delay for minimal processing simulation
+
+        // Initialize tooltips
+        if (typeof tippy !== 'undefined') {
+            tippy('[data-tippy-content]', {
+                theme: 'light',
+                placement: 'top',
+                arrow: true,
+                delay: [200, 0],
+            });
+        }
+
+        // Function to initialize data visualizations
+        function initializeDataVisualizations(result) {
+            if (!result || typeof result !== 'object') {
+                return;
+            }
+
+            // Set default probabilities based on risk level if not provided
+            let probability = result.probability;
+            if (probability === undefined || probability === null) {
+                const riskLevel = result.risk_level;
+                if (riskLevel === 'High Risk') {
+                    probability = 0.75; // 75% for high risk
+                } else if (riskLevel === 'Low Risk') {
+                    probability = 0.25; // 25% for low risk
+                } else {
+                    probability = 0.05; // 5% for no risk
+                }
+            }
+
+            const badHabitsPercentage = result.bad_habits_percentage || 0;
+            const probPercent = (probability * 100);
+            const badHabitsPercent = badHabitsPercentage.toFixed(1);
+
+            // Update progress bars
+            document.getElementById('probability-percentage').textContent = `${probPercent}%`;
+            document.getElementById('probability-bar').style.width = `${probPercent}%`;
+
+            document.getElementById('bad-habits-percentage').textContent = `${badHabitsPercent}%`;
+            document.getElementById('bad-habits-bar').style.width = `${badHabitsPercent}%`;
+
+            // Update risk level gauge
+            const riskGauge = document.getElementById('risk-gauge');
+            const riskLevelGauge = document.getElementById('risk-level-gauge');
+            const riskLevel = result.risk_level;
+
+            let gaugeValue = 0;
+            let gaugeColor = '#ef4444'; // red
+            let riskText = 'High';
+
+            if (riskLevel === 'High Risk') {
+                gaugeValue = 85;
+                gaugeColor = '#ef4444';
+                riskText = 'High';
+            } else if (riskLevel === 'Low Risk') {
+                gaugeValue = 35;
+                gaugeColor = '#f59e0b';
+                riskText = 'Low';
+            } else {
+                gaugeValue = 15;
+                gaugeColor = '#10b981';
+                riskText = 'None';
+            }
+
+            riskGauge.style.stroke = gaugeColor;
+            riskGauge.style.strokeDashoffset = 314 - (314 * gaugeValue / 100);
+            riskLevelGauge.textContent = riskText;
+
+            // Update comparison metrics
+            document.getElementById('personal-risk').textContent = `${probPercent}%`;
+            const populationAverage = 17.5; // Average between 15-20%
+            const difference = (probPercent - populationAverage).toFixed(1);
+            document.getElementById('risk-difference').textContent = `${difference > 0 ? '+' : ''}${difference}%`;
+
+            // Initialize risk factors chart
+            initializeRiskFactorsChart(result);
+        }
+
+        // Function to initialize risk factors chart
+        function initializeRiskFactorsChart(result) {
+            const ctx = document.getElementById('riskFactorsChart').getContext('2d');
+
+            // Use real data from result for risk factor distribution
+            const probability = result.probability || 0;
+            const badHabitsPercentage = result.bad_habits_percentage || 0;
+            const totalRiskPercent = probability * 100;
+
+            // Modifiable risk factors (based on bad habits percentage)
+            const modifiableRisk = badHabitsPercentage;
+
+            // Non-modifiable risk factors (total risk minus bad habits)
+            const nonModifiableRisk = Math.max(0, totalRiskPercent - badHabitsPercentage);
+
+            // Protective factors (remaining percentage)
+            const remaining = Math.max(0, 100 - totalRiskPercent);
+
+            const data = {
+                labels: ['Modifiable Risk Factors', 'Non-Modifiable Risk Factors', 'Protective Factors'],
+                datasets: [{
+                    data: [modifiableRisk, nonModifiableRisk, remaining],
+                    backgroundColor: [
+                        '#ef4444', // red for modifiable
+                        '#f59e0b', // orange for non-modifiable
+                        '#10b981'  // green for protective
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    return `${label}: ${value}%`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            };
+
+            new Chart(ctx, config);
+        }
+
+        // Function to toggle section visibility
+        function toggleSection(contentId) {
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(contentId.replace('content', 'toggle-icon'));
+
+            if (content.classList.contains('max-h-0')) {
+                // Expand
+                content.classList.remove('max-h-0', 'opacity-0');
+                content.classList.add('max-h-screen', 'opacity-100');
+                icon.setAttribute('data-lucide', 'chevron-up');
+            } else {
+                // Collapse
+                content.classList.remove('max-h-screen', 'opacity-100');
+                content.classList.add('max-h-0', 'opacity-0');
+                icon.setAttribute('data-lucide', 'chevron-down');
+            }
+
+            // Re-initialize icons
+            lucide.createIcons();
+        }
+
+        // Function to generate and download PDF report
+        function downloadReport() {
+            try {
+                // Get stored answers and result data
+                const answers = JSON.parse(localStorage.getItem('assessmentAnswers') || '{}');
+                const result = resultData;
+
+                // Create PDF
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                // Set up fonts and colors
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(20);
+                doc.setTextColor(40, 40, 40);
+
+                // Header
+                doc.text('CLARITY ALZHEIMER\'S RISK ASSESSMENT REPORT', 20, 30);
+
+                // Date
+                const date = new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+                doc.text(`Generated on: ${date}`, 20, 45);
+
+                let yPosition = 65;
+
+                // Assessment Results Section
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(16);
+                doc.text('ASSESSMENT RESULTS', 20, yPosition);
+                yPosition += 15;
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+                doc.text(`Risk Level: ${result.risk_level || 'N/A'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Probability of Alzheimer's: ${result.probability ? (result.probability * 100).toFixed(1) + '%' : 'N/A'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Risk Due to Bad Habits: ${result.bad_habits_percentage ? result.bad_habits_percentage.toFixed(1) + '%' : 'N/A'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`MMSE Score: ${answers.mmse_score || 'N/A'}/30`, 20, yPosition);
+                yPosition += 20;
+
+                // Questionnaire Answers Section
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(16);
+                doc.text('QUESTIONNAIRE ANSWERS', 20, yPosition);
+                yPosition += 15;
+
+                // Demographic Information
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(14);
+                doc.text('DEMOGRAPHIC INFORMATION', 20, yPosition);
+                yPosition += 12;
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+                doc.text(`Age: ${answers.age || 'N/A'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Gender: ${answers.gender || 'N/A'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Ethnicity: ${answers.ethnicity || 'N/A'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Education Level: ${answers.education_level || 'N/A'}`, 20, yPosition);
+                yPosition += 8;
+                const bmiValue = answers.bmi && typeof answers.bmi === 'object' && answers.bmi.bmi ? answers.bmi.bmi.toFixed(1) : (typeof answers.bmi === 'number' ? answers.bmi.toFixed(1) : 'N/A');
+                doc.text(`BMI: ${bmiValue}`, 20, yPosition);
+                yPosition += 20;
+
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+
+                // Lifestyle Factors
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(14);
+                doc.text('LIFESTYLE FACTORS', 20, yPosition);
+                yPosition += 12;
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+                doc.text(`Smoking: ${answers.smoking ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Alcohol Consumption: ${answers.alcohol_consumption || 'N/A'} drinks per week`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Physical Activity: ${answers.physical_activity || 'N/A'} hours per week`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Diet Quality: ${answers.diet_quality || 'N/A'}/10`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Sleep Quality: ${answers.sleep_quality || 'N/A'}/10`, 20, yPosition);
+                yPosition += 20;
+
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+
+                // Medical History
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(14);
+                doc.text('MEDICAL HISTORY', 20, yPosition);
+                yPosition += 12;
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+                doc.text(`Family History of Alzheimer's: ${answers.family_history_alzheimers ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Cardiovascular Disease: ${answers.cardiovascular_disease ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Diabetes: ${answers.diabetes ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Depression: ${answers.depression ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Head Injury: ${answers.head_injury ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Hypertension: ${answers.hypertension ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 20;
+
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+
+                // Cognitive Assessment
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(14);
+                doc.text('COGNITIVE ASSESSMENT', 20, yPosition);
+                yPosition += 12;
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+                doc.text(`MMSE Score: ${answers.mmse_score || 'N/A'}/30`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Memory Complaints: ${answers.memory_complaints ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Behavioral Problems: ${answers.behavioral_problems ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Confusion: ${answers.confusion ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Disorientation: ${answers.disorientation ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Personality Changes: ${answers.personality_changes ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Difficulty Completing Tasks: ${answers.difficulty_completing_tasks ? 'Yes' : 'No'}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Forgetfulness: ${answers.forgetfulness || 'N/A'}`, 20, yPosition);
+                yPosition += 20;
+
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+
+                // Analysis & Recommendations
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(16);
+                doc.text('ANALYSIS & RECOMMENDATIONS', 20, yPosition);
+                yPosition += 15;
+
+                // Risk-specific analysis
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+
+                if (result.risk_level === 'High Risk') {
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('HIGH RISK DETECTED', 20, yPosition);
+                    yPosition += 10;
+                    doc.setFont('helvetica', 'normal');
+                    const highRiskText = doc.splitTextToSize('Your assessment indicates a high risk for Alzheimer\'s disease. This assessment is based on your responses and should not be considered a medical diagnosis.', 170);
+                    doc.text(highRiskText, 20, yPosition);
+                    yPosition += highRiskText.length * 5 + 10;
+
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('GOOD POINTS:', 20, yPosition);
+                    yPosition += 8;
+                    doc.setFont('helvetica', 'normal');
+                    doc.text('• You have taken a proactive step by completing this assessment', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Early awareness can lead to timely interventions', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Many risk factors are modifiable with lifestyle changes', 25, yPosition);
+                    yPosition += 15;
+
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('AREAS FOR IMPROVEMENT:', 20, yPosition);
+                    yPosition += 8;
+                    doc.setFont('helvetica', 'normal');
+                    doc.text('• Consider consulting a healthcare professional immediately', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Address any modifiable risk factors identified above', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Maintain regular health monitoring and follow-up assessments', 25, yPosition);
+                    yPosition += 15;
+                } else if (result.risk_level === 'Low Risk') {
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('LOW RISK DETECTED', 20, yPosition);
+                    yPosition += 10;
+                    doc.setFont('helvetica', 'normal');
+                    const lowRiskText = doc.splitTextToSize('Your assessment indicates a low risk for Alzheimer\'s disease based on your current responses.', 170);
+                    doc.text(lowRiskText, 20, yPosition);
+                    yPosition += lowRiskText.length * 5 + 10;
+
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('GOOD POINTS:', 20, yPosition);
+                    yPosition += 8;
+                    doc.setFont('helvetica', 'normal');
+                    doc.text('• Your current lifestyle and health factors show positive indicators', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Regular monitoring and healthy habits are being maintained', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Proactive health management is evident', 25, yPosition);
+                    yPosition += 15;
+
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('AREAS FOR IMPROVEMENT:', 20, yPosition);
+                    yPosition += 8;
+                    doc.setFont('helvetica', 'normal');
+                    doc.text('• Continue maintaining healthy lifestyle habits', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Schedule regular health check-ups', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Consider periodic reassessment to monitor changes', 25, yPosition);
+                    yPosition += 15;
+                } else {
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('NO SIGNIFICANT RISK DETECTED', 20, yPosition);
+                    yPosition += 10;
+                    doc.setFont('helvetica', 'normal');
+                    const noRiskText = doc.splitTextToSize('Your assessment indicates no significant risk for Alzheimer\'s disease based on your responses.', 170);
+                    doc.text(noRiskText, 20, yPosition);
+                    yPosition += noRiskText.length * 5 + 10;
+
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('GOOD POINTS:', 20, yPosition);
+                    yPosition += 8;
+                    doc.setFont('helvetica', 'normal');
+                    doc.text('• Excellent lifestyle and health factor management', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Strong preventive health practices', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Low-risk profile across assessed categories', 25, yPosition);
+                    yPosition += 15;
+
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('AREAS FOR IMPROVEMENT:', 20, yPosition);
+                    yPosition += 8;
+                    doc.setFont('helvetica', 'normal');
+                    doc.text('• Maintain current healthy habits', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Continue regular health monitoring', 25, yPosition);
+                    yPosition += 6;
+                    doc.text('• Stay informed about cognitive health', 25, yPosition);
+                    yPosition += 15;
+                }
+
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+
+                // Key Factors to Focus On
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(16);
+                doc.text('KEY FACTORS TO FOCUS ON', 20, yPosition);
+                yPosition += 15;
+
+                let hasLifestyleFactors = false;
+                let hasMedicalFactors = false;
+                let hasCognitiveFactors = false;
+
+                // Check if we have any lifestyle factors
+                if (answers.physical_activity < 3 || answers.diet_quality < 5 || answers.sleep_quality < 5 ||
+                    answers.alcohol_consumption > 14 || answers.smoking) {
+                    hasLifestyleFactors = true;
+                }
+
+                // Check if we have any medical factors
+                if (answers.cardiovascular_disease || answers.diabetes || answers.hypertension ||
+                    answers.depression || answers.head_injury) {
+                    hasMedicalFactors = true;
+                }
+
+                // Check if we have any cognitive factors
+                if ((answers.memory_complaints || answers.behavioral_problems || answers.confusion ||
+                     answers.disorientation || answers.personality_changes || answers.difficulty_completing_tasks) ||
+                    answers.mmse_score < 24 || answers.family_history_alzheimers ||
+                    (answers.education_level === "No formal" || answers.education_level === "Primary")) {
+                    hasCognitiveFactors = true;
+                }
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+
+                if (hasLifestyleFactors) {
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(14);
+                    doc.text('LIFESTYLE FACTORS', 20, yPosition);
+                    yPosition += 12;
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(12);
+
+                    if (answers.smoking) {
+                        doc.text('• Smoking Cessation: Quit smoking - smoking significantly increases Alzheimer\'s risk', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.physical_activity < 3) {
+                        doc.text('• Physical Activity: Increase physical activity to at least 3 hours per week', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.diet_quality < 5) {
+                        doc.text('• Diet Quality: Improve diet quality with Mediterranean-style eating', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.sleep_quality < 5) {
+                        doc.text('• Sleep Quality: Aim for 7-9 hours of quality sleep per night', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.alcohol_consumption > 14) {
+                        doc.text('• Alcohol Consumption: Reduce alcohol intake to no more than 1 drink per day', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    yPosition += 10;
+                }
+
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+
+                if (hasMedicalFactors) {
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(14);
+                    doc.text('MEDICAL FACTORS', 20, yPosition);
+                    yPosition += 12;
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(12);
+
+                    if (answers.cardiovascular_disease) {
+                        doc.text('• Cardiovascular Health: Continue managing cardiovascular disease - heart health is closely linked to brain health', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.diabetes) {
+                        doc.text('• Diabetes Management: Maintain good blood sugar control - diabetes increases Alzheimer\'s risk', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.hypertension) {
+                        doc.text('• Hypertension Control: Keep blood pressure under control - high blood pressure affects brain health', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.depression) {
+                        doc.text('• Mental Health: Continue managing depression - mental health treatment can improve cognitive outcomes', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.head_injury) {
+                        doc.text('• Head Injury Monitoring: Monitor for any new symptoms - previous head injuries can increase Alzheimer\'s risk', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    yPosition += 10;
+                }
+
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+
+                if (hasCognitiveFactors) {
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(14);
+                    doc.text('COGNITIVE FACTORS', 20, yPosition);
+                    yPosition += 12;
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(12);
+
+                    if (answers.memory_complaints || answers.behavioral_problems || answers.confusion ||
+                        answers.disorientation || answers.personality_changes || answers.difficulty_completing_tasks) {
+                        doc.text('• Cognitive Symptoms: Monitor cognitive symptoms closely and discuss with healthcare provider', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.mmse_score < 24) {
+                        doc.text('• MMSE Score: Low MMSE score suggests need for professional cognitive evaluation', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.family_history_alzheimers) {
+                        doc.text('• Family History: Family history increases risk - regular monitoring and early intervention are important', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    if (answers.education_level === "No formal" || answers.education_level === "Primary") {
+                        doc.text('• Cognitive Reserve: Consider cognitive exercises and learning new skills to build cognitive reserve', 25, yPosition);
+                        yPosition += 8;
+                    }
+                    yPosition += 10;
+                }
+
+                if (!hasLifestyleFactors && !hasMedicalFactors && !hasCognitiveFactors) {
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(14);
+                    doc.text('EXCELLENT PROFILE!', 20, yPosition);
+                    yPosition += 12;
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(12);
+                    const excellentText = doc.splitTextToSize('Your responses indicate excellent health practices across all categories! Continue maintaining your healthy lifestyle to support cognitive well-being.', 170);
+                    doc.text(excellentText, 20, yPosition);
+                    yPosition += excellentText.length * 5 + 10;
+                }
+
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+
+                // Disclaimer
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(16);
+                doc.text('IMPORTANT DISCLAIMER', 20, yPosition);
+                yPosition += 15;
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(10);
+                const disclaimerText = doc.splitTextToSize('This report is generated for informational purposes only and should not replace professional medical advice. The Clarity assessment provides risk estimation based on established risk factors and your responses. It is not a diagnostic tool and cannot confirm or rule out Alzheimer\'s disease.', 170);
+                doc.text(disclaimerText, 20, yPosition);
+                yPosition += disclaimerText.length * 4 + 10;
+
+                const disclaimerText2 = doc.splitTextToSize('We strongly recommend: • Consulting a healthcare professional for proper evaluation • Discussing your results with a qualified medical practitioner • Using this information as a starting point for health discussions', 170);
+                doc.text(disclaimerText2, 20, yPosition);
+                yPosition += disclaimerText2.length * 4 + 10;
+
+                doc.text('For support and resources:', 20, yPosition);
+                yPosition += 8;
+                doc.text('• Alzheimer\'s and Related Disorders Society of India (ARDSI): 1800-11-6677', 25, yPosition);
+                yPosition += 6;
+                doc.text('• Indian Council of Medical Research (ICMR): icmr.gov.in', 25, yPosition);
+                yPosition += 15;
+
+                // Footer
+                doc.setFont('helvetica', 'italic');
+                doc.setFontSize(10);
+                doc.text('Thank you for using Clarity to assess your cognitive health!', 20, yPosition);
+                yPosition += 8;
+                doc.text('Report generated by Clarity - Alzheimer\'s Risk Assessment Tool', 20, yPosition);
+
+                // Save the PDF
+                const fileName = `Clarity_Assessment_Report_${new Date().toISOString().split('T')[0]}.pdf`;
+                doc.save(fileName);
+
+            } catch (error) {
+                console.error('Error generating PDF report:', error);
+                alert('An error occurred while generating the PDF report. Please try again.');
+            }
+        }
+
+
+    </script>
+</body>
+</html>

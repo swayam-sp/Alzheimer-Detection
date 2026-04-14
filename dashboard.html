@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Clarity</title>
+    <script src="js/auth_guard.js"></script>
+    <script src="js/supabase.js"></script>
+    <script>
+        // Check if user is logged in and show appropriate content
+        (async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            const loggedInContent = document.getElementById('logged-in-content');
+            const landingContent = document.getElementById('landing-content');
+            const headerNav = document.querySelector('header nav');
+
+            if (session) {
+                loggedInContent.style.display = 'block';
+                landingContent.style.display = 'none';
+            } else {
+                loggedInContent.style.display = 'none';
+                landingContent.style.display = 'block';
+                // Update header for landing page
+                headerNav.innerHTML = `
+                    <a href="index.html" class="text-2xl font-bold text-violet-600 flex items-center gap-2">
+                        <i data-lucide="brain-circuit" class="w-7 h-7"></i>
+                        <span>Clarity</span>
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <a href="auth.html" class="text-slate-600 hover:text-violet-600 transition-colors">Login</a>
+                        <a href="auth.html?mode=register" class="px-5 py-2.5 bg-violet-600 text-white rounded-full hover:bg-violet-700 transition-transform hover:scale-105 shadow-lg shadow-violet-200">Get Started</a>
+                    </div>
+                `;
+            }
+        })();
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-poppins text-slate-800 min-h-screen">
+
+    <div id="app-container" class="relative min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm sticky top-0 z-40">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-violet-600 flex items-center gap-2">
+                    <i data-lucide="brain-circuit" class="w-7 h-7"></i>
+                    <span>Clarity</span>
+                </a>
+                <div>
+                     <button id="logout-btn" class="logout-btn-3d text-slate-600 hover:text-violet-600 transition-all duration-500 flex items-center gap-2">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
+                        Logout
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Landing Content for Non-Logged Users -->
+        <div id="landing-content" class="hidden">
+            <!-- Hero Section -->
+            <section class="text-center py-20">
+                <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">Welcome to Clarity</h1>
+                <p class="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">Take control of your cognitive health with our comprehensive Alzheimer's disease assessment and brain training platform.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="auth.html?mode=register" class="px-8 py-4 bg-violet-600 text-white rounded-full hover:bg-violet-700 transition-transform hover:scale-105 shadow-lg shadow-violet-200 text-lg font-semibold">Start Your Assessment</a>
+                    <a href="auth.html" class="px-8 py-4 border-2 border-violet-600 text-violet-600 rounded-full hover:bg-violet-600 hover:text-white transition-all text-lg font-semibold">Login to Continue</a>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="py-20">
+                <h2 class="text-4xl font-bold text-center mb-16">Why Choose Clarity?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+                        <i data-lucide="brain" class="w-16 h-16 text-violet-600 mx-auto mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4">Advanced Assessment</h3>
+                        <p class="text-slate-600">Comprehensive MMSE testing with AI-powered analysis to detect early signs of cognitive decline.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+                        <i data-lucide="gamepad-2" class="w-16 h-16 text-blue-600 mx-auto mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4">Brain Training Games</h3>
+                        <p class="text-slate-600">Interactive games designed by neuroscientists to improve memory, attention, and cognitive function.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+                        <i data-lucide="bar-chart-3" class="w-16 h-16 text-green-600 mx-auto mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4">Progress Tracking</h3>
+                        <p class="text-slate-600">Detailed analytics and progress reports to monitor your cognitive health over time.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="py-20 bg-white rounded-3xl shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-violet-600 mb-2">10K+</div>
+                        <div class="text-slate-600">Assessments Completed</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">95%</div>
+                        <div class="text-slate-600">Accuracy Rate</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-green-600 mb-2">50+</div>
+                        <div class="text-slate-600">Brain Games</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-purple-600 mb-2">24/7</div>
+                        <div class="text-slate-600">Support Available</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="text-center py-20">
+                <h2 class="text-4xl font-bold mb-6">Ready to Take Control?</h2>
+                <p class="text-xl text-slate-600 mb-8">Join thousands of users who are proactively managing their cognitive health.</p>
+                <a href="auth.html?mode=register" class="px-10 py-5 bg-gradient-to-r from-violet-600 to-blue-600 text-white rounded-full hover:from-violet-700 hover:to-blue-700 transition-all hover:scale-105 shadow-lg shadow-violet-200 text-xl font-semibold">Get Started Today</a>
+            </section>
+        </div>
+
+        <!-- Logged In Content -->
+        <div id="logged-in-content">
+            <!-- Main Content -->
+            <main class="container mx-auto px-6 py-12 max-w-7xl">
+                <!-- Welcome Header -->
+                <div class="bg-gradient-to-r from-violet-600 to-blue-600 rounded-3xl p-8 mb-8 text-white shadow-xl">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h1 class="text-4xl font-bold mb-2">Welcome back!</h1>
+                            <p class="text-violet-100 text-lg">Track your cognitive health and continue your brain training journey.</p>
+                        </div>
+                        <div class="hidden md:block">
+                            <i data-lucide="brain-circuit" class="w-16 h-16 text-white opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm font-medium">Total Tests</p>
+                                <p class="text-3xl font-bold text-violet-600" id="total-tests-count">15,247</p>
+                            </div>
+                            <div class="bg-violet-100 p-3 rounded-full">
+                                <i data-lucide="clipboard-list" class="w-6 h-6 text-violet-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm font-medium">Latest Score</p>
+                                <p class="text-3xl font-bold text-blue-600" id="latest-score">28</p>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <i data-lucide="trending-up" class="w-6 h-6 text-blue-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm font-medium">Games Played</p>
+                                <p class="text-3xl font-bold text-green-600" id="games-played">12</p>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded-full">
+                                <i data-lucide="gamepad-2" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm font-medium">Streak</p>
+                                <p class="text-3xl font-bold text-orange-600" id="current-streak">7</p>
+                            </div>
+                            <div class="bg-orange-100 p-3 rounded-full">
+                                <i data-lucide="flame" class="w-6 h-6 text-orange-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Column: Test History -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-violet-100 p-2 rounded-lg">
+                                        <i data-lucide="history" class="w-5 h-5 text-violet-600"></i>
+                                    </div>
+                                    <h2 class="text-2xl font-semibold text-slate-800">Test History</h2>
+                                </div>
+                                <a href="test.html" class="bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-violet-700 hover:to-blue-700 transition-all hover:shadow-lg hover:scale-105 flex items-center gap-2 font-medium">
+                                    <i data-lucide="plus" class="w-5 h-5"></i>
+                                    Take New Test
+                                </a>
+                            </div>
+
+                            <div id="test-history-container" class="space-y-4 max-h-96 overflow-y-auto">
+                                <!-- History cards will be injected here -->
+                                <div id="loading-history" class="text-center p-8 text-slate-500">
+                                    <div class="animate-pulse">
+                                        <div class="h-4 bg-slate-200 rounded w-3/4 mx-auto mb-4"></div>
+                                        <div class="h-4 bg-slate-200 rounded w-1/2 mx-auto"></div>
+                                    </div>
+                                    <p class="mt-4">Loading your history...</p>
+                                </div>
+                                <div id="no-history" class="hidden text-center p-12">
+                                    <div class="bg-slate-50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="folder-search" class="w-8 h-8 text-slate-400"></i>
+                                    </div>
+                                    <h3 class="text-xl font-semibold mb-2 text-slate-700">No Tests Taken Yet</h3>
+                                    <p class="text-slate-500 mb-6">Your test results will appear here once you complete your first assessment.</p>
+                                    <a href="test.html" class="inline-flex items-center gap-2 bg-violet-600 text-white px-6 py-3 rounded-xl hover:bg-violet-700 transition-colors">
+                                        <i data-lucide="play" class="w-4 h-4"></i>
+                                        Start Your First Test
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Progress Chart -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="bg-blue-100 p-2 rounded-lg">
+                                    <i data-lucide="bar-chart-3" class="w-5 h-5 text-blue-600"></i>
+                                </div>
+                                <h2 class="text-xl font-semibold text-slate-800">MMSE Progress</h2>
+                            </div>
+                            <div class="h-64 mb-4">
+                                <canvas id="mmse-chart"></canvas>
+                            </div>
+                            <div class="bg-slate-50 rounded-lg p-4">
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    <strong>MMSE Scale:</strong> 0-30 points. Higher scores indicate better cognitive function. Regular testing helps track changes over time.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brain Training Games Section -->
+                <div class="mt-8">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="bg-green-100 p-2 rounded-lg">
+                                <i data-lucide="gamepad-2" class="w-5 h-5 text-green-600"></i>
+                            </div>
+                            <h2 class="text-2xl font-semibold text-slate-800">Brain Training Games</h2>
+                        </div>
+                        <div id="games-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <!-- Games will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-container"></div>
+
+    <script type="module" src="js/page-transitions-skeleton.js"></script>
+    <script type="module" src="js/i18n.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

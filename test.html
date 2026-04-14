@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire - Clarity</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-100 font-poppins text-slate-800">
+
+    <!-- 3D Transition Background -->
+    <div class="page-transition-bg page-bg-test">
+        <div class="page-particles"></div>
+    </div>
+
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-violet-600 flex items-center gap-2">
+                    <i data-lucide="brain-circuit" class="w-7 h-7"></i>
+                    <span>Clarity</span>
+                </a>
+                <a href="dashboard.html" class="text-slate-600 hover:text-violet-600 transition-colors flex items-center gap-2">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                    Exit Test
+                </a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow flex flex-col items-center p-4 relative">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-br from-violet-50 via-blue-50 to-purple-50 -z-10">
+                <div class="absolute top-20 left-10 w-32 h-32 bg-violet-200/20 rounded-full blur-xl animate-float"></div>
+                <div class="absolute top-40 right-20 w-24 h-24 bg-blue-200/20 rounded-full blur-xl animate-float-delayed"></div>
+                <div class="absolute bottom-20 left-1/4 w-40 h-40 bg-purple-200/20 rounded-full blur-xl animate-float-slow"></div>
+            </div>
+
+            <!-- Floating Icons -->
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none -z-5">
+                <i data-lucide="brain" class="absolute top-20 left-10 w-8 h-8 text-violet-300/30 animate-float-slow"></i>
+                <i data-lucide="activity" class="absolute top-40 right-20 w-6 h-6 text-blue-300/30 animate-float-delayed"></i>
+                <i data-lucide="heart" class="absolute bottom-40 left-20 w-7 h-7 text-pink-300/30 animate-float"></i>
+                <i data-lucide="shield" class="absolute top-60 right-1/4 w-5 h-5 text-green-300/30 animate-float-slow"></i>
+            </div>
+
+            <div id="wizard-container" class="max-w-4xl w-full relative">
+                <!-- Header Card -->
+                <div class="text-center mb-8">
+                    <div class="bg-gradient-to-r from-violet-600 to-purple-600 p-6 rounded-3xl text-white shadow-2xl mb-6">
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <i data-lucide="brain-circuit" class="w-8 h-8"></i>
+                            <h1 class="text-2xl md:text-3xl font-bold">Cognitive Assessment</h1>
+                        </div>
+                        <p class="text-violet-100 text-sm md:text-base mb-4">Take your time and answer honestly for the most accurate results</p>
+                        <div class="bg-white/20 backdrop-blur-sm px-6 py-4 rounded-full">
+                            <div class="flex items-center justify-between mb-2">
+                                <span id="progress-text" class="font-bold text-white text-sm">Step 1 of 24</span>
+                                <span id="progress-percent" class="font-bold text-white text-sm">4%</span>
+                            </div>
+                            <div class="bg-white/30 rounded-full h-2">
+                                <div id="progress-bar" class="bg-white rounded-full h-2 transition-all duration-500" style="width: 4%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Area -->
+                <div id="question-area" class="bg-gradient-to-br from-white via-violet-50/30 to-blue-50/30 p-8 md:p-12 rounded-3xl shadow-2xl border border-white/60 relative min-h-[500px] flex flex-col justify-center backdrop-blur-sm overflow-hidden question-card">
+                    <!-- Animated Background Elements -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-violet-100/20 via-transparent to-blue-100/20 animate-pulse"></div>
+
+                    <!-- Floating Decorative Elements -->
+                    <div class="absolute top-6 right-6 w-20 h-20 bg-gradient-to-br from-violet-300/30 to-purple-300/30 rounded-full blur-sm animate-float-slow"></div>
+                    <div class="absolute bottom-6 left-6 w-16 h-16 bg-gradient-to-br from-blue-300/30 to-cyan-300/30 rounded-full blur-sm animate-float-delayed"></div>
+                    <div class="absolute top-1/2 left-8 w-8 h-8 bg-gradient-to-br from-pink-300/40 to-rose-300/40 rounded-full blur-sm animate-float"></div>
+                    <div class="absolute bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-green-300/30 to-emerald-300/30 rounded-full blur-sm animate-float-slow"></div>
+
+                    <!-- Animated Border -->
+                    <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-violet-400/20 via-purple-400/20 to-blue-400/20 animate-gradient-x"></div>
+                    <div class="absolute inset-[2px] rounded-[22px] bg-gradient-to-br from-white via-violet-50/50 to-blue-50/50 backdrop-blur-sm"></div>
+
+                    <!-- Question Content -->
+                    <div id="question-content" class="relative z-10 w-full flex-grow flex items-center justify-center">
+                        <!-- Questions will be injected here -->
+                        <div class="text-center text-slate-500 question-loading">
+                            <div class="relative">
+                                <div class="absolute inset-0 bg-gradient-to-r from-violet-400 to-purple-400 rounded-full blur-lg animate-pulse"></div>
+                                <i data-lucide="loader-2" class="relative w-16 h-16 mx-auto mb-6 animate-spin text-violet-500 drop-shadow-lg"></i>
+                            </div>
+                            <p class="text-xl font-medium text-slate-600">Preparing your personalized assessment...</p>
+                            <p class="text-sm text-slate-500 mt-2">This will only take a moment</p>
+                        </div>
+                    </div>
+
+                    <!-- Required Message (Inside Container) -->
+                    <div id="required-message" class="text-center mt-4 hidden relative z-20">
+                        <div class="inline-flex items-center gap-2 bg-red-50 border-2 border-red-200 px-6 py-3 rounded-xl shadow-lg animate-pulse">
+                            <i data-lucide="alert-triangle" class="w-6 h-6 text-red-500"></i>
+                            <span class="text-base text-red-700 font-semibold">Please answer this question to continue</span>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="flex justify-between items-center mt-8 relative z-20">
+                        <button id="prev-btn" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-3 px-6 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i data-lucide="arrow-left" class="w-5 h-5 inline mr-2"></i>
+                            Previous
+                        </button>
+                        <button id="next-btn" class="bg-violet-600 hover:bg-violet-700 text-white font-semibold py-3 px-6 rounded-full transition-colors">
+                            Next
+                            <i data-lucide="arrow-right" class="w-5 h-5 inline ml-2"></i>
+                        </button>
+                    </div>
+
+                    <!-- Corner Accents -->
+                    <div class="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-violet-300/50 rounded-tl-3xl"></div>
+                    <div class="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-purple-300/50 rounded-tr-3xl"></div>
+                    <div class="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-blue-300/50 rounded-bl-3xl"></div>
+                    <div class="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-cyan-300/50 rounded-br-3xl"></div>
+                </div>
+
+
+
+                <!-- Encouragement Message -->
+                <div class="text-center mt-6">
+                    <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-white/50">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-violet-500"></i>
+                        <span class="text-sm text-slate-600 font-medium">Your answers help us provide personalized insights</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Card (Initially Hidden) -->
+            <div id="result-container" class="hidden w-full">
+                <div class="w-full">
+                    <!-- Result Card -->
+                    <div id="result-card" class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border space-y-10">
+                        <!-- Icon and Title -->
+                        <div class="text-center">
+                            <div class="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-6" id="icon-container">
+                                <i id="result-icon" class="w-10 h-10 md:w-12 md:h-12"></i>
+                            </div>
+                            <h1 id="result-title" class="text-3xl md:text-4xl font-bold mb-4"></h1>
+                            <p class="text-lg md:text-xl font-semibold text-slate-700 mb-4">Probability of Alzheimer's: <span id="probability-text" class="font-bold"></span></p>
+                            <p class="text-base md:text-lg font-semibold text-slate-700 mb-6">Due to Bad Habits: <span id="bad-habits-text" class="font-bold text-orange-600"></span></p>
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <p id="result-description" class="text-slate-600 text-base md:text-lg leading-relaxed text-center max-w-2xl mx-auto">
+                                Your results indicate a potential risk. It's important to remember this is not a diagnosis. We strongly recommend consulting a healthcare professional to discuss your results.
+                            </p>
+                        </div>
+
+                        <!-- Motivational Message Box -->
+                        <div id="motivational-box" class="border rounded-xl p-6 bg-gradient-to-r from-blue-50 to-purple-50">
+                            <p id="motivational-text" class="font-semibold text-center text-base md:text-lg text-slate-800">
+                                Knowledge is power. Taking this step shows you're proactive about your health!
+                            </p>
+                        </div>
+
+                        <!-- Risk Factors -->
+                        <div>
+                            <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-5 h-5 md:w-6 md:h-6 text-orange-500"></i>
+                                Key Risk Factors
+                            </h2>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                                    <h3 class="font-semibold text-orange-800 mb-2 text-sm md:text-base">Non-Modifiable</h3>
+                                    <ul class="text-orange-700 space-y-1 text-xs md:text-sm">
+                                        <li>• Age (65+)</li>
+                                        <li>• Family history</li>
+                                        <li>• Genetics (APOE ε4)</li>
+                                        <li>• Down syndrome</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                    <h3 class="font-semibold text-green-800 mb-2 text-sm md:text-base">Modifiable</h3>
+                                    <ul class="text-green-700 space-y-1 text-xs md:text-sm">
+                                        <li>• Cardiovascular disease</li>
+                                        <li>• Diabetes & hypertension</li>
+                                        <li>• Smoking & alcohol</li>
+                                        <li>• Physical inactivity</li>
+                                        <li>• Poor diet & sleep</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Helpful Tips Section -->
+                        <div id="tips-section" class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 md:p-6">
+                            <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                <i data-lucide="lightbulb" class="w-5 h-5 md:w-6 md:h-6 text-yellow-500"></i>
+                                Helpful Tips & Next Steps
+                            </h2>
+                            <div id="tips-content" class="space-y-3">
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="font-medium text-slate-800">Schedule a Doctor's Appointment</span>
+                                        <p class="text-slate-600 text-sm">Consult a healthcare professional for a comprehensive evaluation and personalized advice</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="font-medium text-slate-800">Keep a Health Journal</span>
+                                        <p class="text-slate-600 text-sm">Track any symptoms, memory issues, or changes you notice for discussions with your doctor</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="font-medium text-slate-800">Discuss Family History</span>
+                                        <p class="text-slate-600 text-sm">Share information about relatives with Alzheimer's or dementia with your healthcare provider</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="font-medium text-slate-800">Maintain Healthy Lifestyle</span>
+                                        <p class="text-slate-600 text-sm">Regular exercise, balanced diet, quality sleep, and social engagement can support brain health</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="font-medium text-slate-800">Consider Cognitive Exercises</span>
+                                        <p class="text-slate-600 text-sm">Engage in brain-training activities like puzzles, reading, or learning new skills</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="font-medium text-slate-800">Stay Socially Active</span>
+                                        <p class="text-slate-600 text-sm">Maintain strong relationships and participate in community activities</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="font-medium text-slate-800">Schedule regular check-ups</span>
+                                        <p class="text-slate-600 text-sm">Continue with your healthcare provider for routine monitoring</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="font-medium text-slate-800">Monitor your health</span>
+                                        <p class="text-slate-600 text-sm">Keep track of any changes and consider retaking the test periodically</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Prevention Strategies -->
+                        <div>
+                            <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                <i data-lucide="shield" class="w-5 h-5 md:w-6 md:h-6 text-green-500"></i>
+                                Prevention Strategies
+                            </h2>
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6">
+                                <p class="text-green-800 mb-4 font-medium text-sm md:text-base">While there's no guaranteed prevention, research shows these strategies may help reduce risk:</p>
+                                <div class="grid md:grid-cols-2 gap-4 text-xs md:text-sm">
+                                    <div>
+                                        <h4 class="font-semibold text-green-800 mb-2 text-sm md:text-base">Physical Health</h4>
+                                        <ul class="text-green-700 space-y-1">
+                                            <li>• Regular aerobic exercise (150 min/week)</li>
+                                            <li>• Manage cardiovascular health</li>
+                                            <li>• Control blood pressure & cholesterol</li>
+                                            <li>• Maintain healthy weight</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-green-800 mb-2 text-sm md:text-base">Lifestyle Factors</h4>
+                                        <ul class="text-green-700 space-y-1">
+                                            <li>• Mediterranean-style diet</li>
+                                            <li>• Quality sleep (7-9 hours/night)</li>
+                                            <li>• Limit alcohol & avoid smoking</li>
+                                            <li>• Mental stimulation & learning</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Key Factors to Focus On -->
+                        <div id="key-factors-section">
+                            <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                                <i data-lucide="target" class="w-5 h-5 md:w-6 md:h-6 text-blue-500"></i>
+                                Key Factors to Focus On
+                            </h2>
+                            <div class="grid grid-cols-3 gap-6">
+                                <!-- Lifestyle Factors Container -->
+                                <div id="lifestyle-container" class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 shadow-sm">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <i data-lucide="activity" class="w-5 h-5 text-blue-600"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-blue-800">Lifestyle Factors</h3>
+                                    </div>
+                                    <div id="lifestyle-factors" class="space-y-3">
+                                        <!-- Factors will be populated by JavaScript -->
+                                    </div>
+                                </div>
+
+                                <!-- Medical Factors Container -->
+                                <div id="medical-container" class="bg-gradient-to-br from-red-50 to-pink-50 border border-red-200 rounded-xl p-6 shadow-sm">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                            <i data-lucide="heart" class="w-5 h-5 text-red-600"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-red-800">Medical Factors</h3>
+                                    </div>
+                                    <div id="medical-factors" class="space-y-3">
+                                        <!-- Factors will be populated by JavaScript -->
+                                    </div>
+                                </div>
+
+                                <!-- Cognitive Factors Container -->
+                                <div id="cognitive-container" class="bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-200 rounded-xl p-6 shadow-sm">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <i data-lucide="brain" class="w-5 h-5 text-purple-600"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-purple-800">Cognitive Factors</h3>
+                                    </div>
+                                    <div id="cognitive-factors" class="space-y-3">
+                                        <!-- Factors will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Support Resources -->
+                        <div>
+                            <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                <i data-lucide="heart" class="w-5 h-5 md:w-6 md:h-6 text-red-500"></i>
+                                Support Resources
+                            </h2>
+                            <div class="bg-red-50 border border-red-200 rounded-lg p-4 md:p-6">
+                                <p class="text-red-800 mb-4 font-medium text-sm md:text-base">You're not alone. Here are trusted organizations that can provide support, information, and guidance:</p>
+                                <div class="grid md:grid-cols-2 gap-4 text-xs md:text-sm">
+                                    <div>
+                                        <h4 class="font-semibold text-red-800 mb-2 text-sm md:text-base">Alzheimer's and Related Disorders Society of India (ARDSI)</h4>
+                                        <p class="text-red-700 mb-1">Helpline: 1800-11-6677</p>
+                                        <p class="text-red-700">Website: ardsi.org</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-red-800 mb-2 text-sm md:text-base">Indian Council of Medical Research (ICMR)</h4>
+                                        <p class="text-red-700 mb-1">Research and support for neurological disorders</p>
+                                        <p class="text-red-700">Website: icmr.gov.in</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex justify-center gap-6 pt-4">
+                            <button onclick="downloadReport()" class="px-8 py-4 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-green-200 flex items-center gap-3 text-lg">
+                                <i data-lucide="download" class="w-6 h-6"></i>
+                                Download Report
+                            </button>
+                            <a href="dashboard.html" class="px-8 py-4 bg-violet-600 text-white font-semibold rounded-full hover:bg-violet-700 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-violet-200 flex items-center gap-3 text-lg">
+                                <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                                View Dashboard
+                            </a>
+                            <button onclick="window.location.href='test.html'" class="px-8 py-4 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-3 text-lg">
+                                <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+                                Retake Test
+                            </button>
+                        </div>
+
+                        <!-- Footer Note -->
+                        <div class="text-center pt-4 border-t border-slate-200">
+                            <p class="text-sm text-slate-500">
+                                Remember, this assessment is for informational purposes only and should not replace professional medical advice. Early consultation with healthcare providers is crucial for proper evaluation and care.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Games Section (Initially Hidden) -->
+            <div id="games-section" class="hidden mt-12 max-w-4xl w-full">
+                <h2 class="text-2xl font-bold mb-6 text-center">Great job! Now try some brain training games</h2>
+                <div id="mini-games-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Games will be injected here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="module" src="js/questionnaire.js"></script>
+</body>
+</html>

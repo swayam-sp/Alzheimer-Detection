@@ -1,0 +1,26 @@
+# Node.js
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# ML Models (optional - ignore if large)
+*.pkl
+
+# Database
+*.db
+
+# Logs
+*.log
+
+# Output/test files
+output.txt
+test_output.txt
+
+# OS files
+.DS_Store
+Thumbs.db

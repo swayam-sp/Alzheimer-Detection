@@ -1,0 +1,144 @@
+{
+  "nav": {
+    "home": "Home",
+    "assessment": "Assessment",
+    "dashboard": "Dashboard",
+    "games": "Brain Games",
+    "about": "About"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "loginTitle": "Welcome Back",
+    "registerTitle": "Create Account",
+    "loginSubtitle": "Sign in to your account",
+    "registerSubtitle": "Join our community",
+    "loginButton": "Sign In",
+    "registerButton": "Create Account",
+    "loading": "Loading...",
+    "errors": {
+      "invalidCredentials": "Invalid email or password",
+      "emailExists": "Email already exists",
+      "weakPassword": "Password is too weak",
+      "networkError": "Network error. Please try again."
+    }
+  },
+  "questionnaire": {
+    "title": "Alzheimer's Risk Assessment",
+    "subtitle": "Complete this comprehensive assessment to understand your risk factors",
+    "start": "Start Assessment",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit Assessment",
+    "progress": "Step {{current}} of {{total}}",
+    "categories": {
+      "demographic": "Personal Information",
+      "lifestyle": "Lifestyle Factors",
+      "medical": "Medical History",
+      "cognitive": "Cognitive Assessment"
+    },
+    "questions": {
+      "age": "What is your age?",
+      "gender": "What is your gender?",
+      "ethnicity": "What is your ethnicity?",
+      "education": "What is your highest education level?",
+      "bmi": "What is your BMI?",
+      "smoking": "Do you smoke?",
+      "alcohol": "How many alcoholic drinks do you have per week?",
+      "physicalActivity": "How many hours of physical activity do you do per week?",
+      "dietQuality": "On a scale of 1-10, how would you rate your diet quality?",
+      "sleepQuality": "On a scale of 1-10, how would you rate your sleep quality?",
+      "familyHistory": "Do you have a family history of Alzheimer's?",
+      "cardiovascular": "Have you been diagnosed with cardiovascular disease?",
+      "diabetes": "Have you been diagnosed with diabetes?",
+      "depression": "Have you been diagnosed with depression?",
+      "headInjury": "Have you ever had a significant head injury?",
+      "hypertension": "Have you been diagnosed with hypertension?",
+      "mmse": "What is your MMSE score?",
+      "memoryComplaints": "Do you experience frequent memory complaints?",
+      "behavioralProblems": "Have others noticed behavioral problems?",
+      "confusion": "Do you experience episodes of confusion?",
+      "disorientation": "Do you experience episodes of disorientation?",
+      "personalityChanges": "Have you noticed changes in your personality?",
+      "taskDifficulty": "Do you have difficulty completing familiar tasks?",
+      "forgetfulness": "How would you describe your forgetfulness?"
+    },
+    "options": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "caucasian": "Caucasian",
+      "africanAmerican": "African American",
+      "asian": "Asian",
+      "hispanic": "Hispanic",
+      "other": "Other",
+      "noFormal": "No formal",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "higher": "Higher",
+      "yes": "Yes",
+      "no": "No",
+      "rarely": "Rarely",
+      "occasionally": "Occasionally",
+      "frequently": "Frequently",
+      "constantly": "Constantly"
+    },
+    "notes": {
+      "mmse": "Take the MMSE test at <a href=\"https://mmse.neurol.ru/\" target=\"_blank\" class=\"text-violet-600 hover:text-violet-800 underline\">mmse.neurol.ru</a> and enter your score here."
+    }
+  },
+  "results": {
+    "title": "Your Assessment Results",
+    "analyzing": "Analyzing your results...",
+    "riskLevels": {
+      "low": "Low Risk",
+      "medium": "Medium Risk",
+      "high": "High Risk"
+    },
+    "descriptions": {
+      "low": "Your current risk factors suggest a low probability of developing Alzheimer's disease. Continue maintaining healthy lifestyle habits.",
+      "medium": "Your assessment indicates a moderate risk level. Consider consulting healthcare professionals for personalized advice.",
+      "high": "Your results suggest an elevated risk. We strongly recommend consulting with a healthcare professional for comprehensive evaluation."
+    },
+    "recommendations": "Personalized Recommendations",
+    "share": "Share Results",
+    "retake": "Retake Assessment",
+    "download": "Download Report"
+  },
+  "games": {
+    "title": "Brain Training Games",
+    "subtitle": "Keep your mind sharp with these cognitive exercises",
+    "memoryMatch": "Memory Match",
+    "sequenceRecall": "Sequence Recall",
+    "patternRecognition": "Pattern Recognition",
+    "play": "Play Now",
+    "score": "Score: {{score}}",
+    "time": "Time: {{time}}s"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "language": "Language",
+    "english": "English",
+    "spanish": "Spanish",
+    "french": "French",
+    "german": "German",
+    "chinese": "Chinese"
+  }
+}

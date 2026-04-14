@@ -1,0 +1,144 @@
+{
+  "nav": {
+    "home": "首页",
+    "assessment": "评估",
+    "dashboard": "仪表板",
+    "games": "大脑游戏",
+    "about": "关于我们"
+  },
+  "auth": {
+    "login": "登录",
+    "register": "注册",
+    "logout": "登出",
+    "email": "电子邮件",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "forgotPassword": "忘记密码？",
+    "loginTitle": "欢迎回来",
+    "registerTitle": "创建账户",
+    "loginSubtitle": "登录您的账户",
+    "registerSubtitle": "加入我们的社区",
+    "loginButton": "登录",
+    "registerButton": "创建账户",
+    "loading": "加载中...",
+    "errors": {
+      "invalidCredentials": "无效的电子邮件或密码",
+      "emailExists": "电子邮件已存在",
+      "weakPassword": "密码太弱",
+      "networkError": "网络错误。请重试。"
+    }
+  },
+  "questionnaire": {
+    "title": "阿尔茨海默病风险评估",
+    "subtitle": "完成这个全面评估以了解您的风险因素",
+    "start": "开始评估",
+    "next": "下一步",
+    "previous": "上一步",
+    "submit": "提交评估",
+    "progress": "步骤 {{current}} / {{total}}",
+    "categories": {
+      "demographic": "个人信息",
+      "lifestyle": "生活方式因素",
+      "medical": "医疗史",
+      "cognitive": "认知评估"
+    },
+    "questions": {
+      "age": "您的年龄是多少？",
+      "gender": "您的性别是什么？",
+      "ethnicity": "您的民族是什么？",
+      "education": "您的最高学历是什么？",
+      "bmi": "您的BMI是多少？",
+      "smoking": "您吸烟吗？",
+      "alcohol": "您每周饮用多少含酒精饮料？",
+      "physicalActivity": "您每周进行多少小时的体育活动？",
+      "dietQuality": "在1-10的范围内，您如何评价您的饮食质量？",
+      "sleepQuality": "在1-10的范围内，您如何评价您的睡眠质量？",
+      "familyHistory": "您有阿尔茨海默病家族史吗？",
+      "cardiovascular": "您被诊断出患有心血管疾病吗？",
+      "diabetes": "您被诊断出患有糖尿病吗？",
+      "depression": "您被诊断出患有抑郁症吗？",
+      "headInjury": "您曾经遭受过严重的头部损伤吗？",
+      "hypertension": "您被诊断出患有高血压吗？",
+      "mmse": "您的MMSE分数是多少？",
+      "memoryComplaints": "您经常出现记忆力抱怨吗？",
+      "behavioralProblems": "其他人注意到行为问题吗？",
+      "confusion": "您经历过混乱的发作吗？",
+      "disorientation": "您经历过迷失方向的发作吗？",
+      "personalityChanges": "您注意到性格变化吗？",
+      "taskDifficulty": "您在完成熟悉的任务时有困难吗？",
+      "forgetfulness": "您如何描述您的健忘？"
+    },
+    "options": {
+      "male": "男性",
+      "female": "女性",
+      "other": "其他",
+      "caucasian": "白人",
+      "africanAmerican": "非裔美国人",
+      "asian": "亚洲人",
+      "hispanic": "西班牙裔",
+      "other": "其他",
+      "noFormal": "无正式教育",
+      "primary": "小学",
+      "secondary": "中学",
+      "higher": "高等",
+      "yes": "是",
+      "no": "否",
+      "rarely": "很少",
+      "occasionally": "偶尔",
+      "frequently": "经常",
+      "constantly": "总是"
+    },
+    "notes": {
+      "mmse": "在 <a href=\"https://mmse.neurol.ru/\" target=\"_blank\" class=\"text-violet-600 hover:text-violet-800 underline\">mmse.neurol.ru</a> 上进行MMSE测试并在此输入您的分数。"
+    }
+  },
+  "results": {
+    "title": "您的评估结果",
+    "analyzing": "正在分析您的结果...",
+    "riskLevels": {
+      "low": "低风险",
+      "medium": "中等风险",
+      "high": "高风险"
+    },
+    "descriptions": {
+      "low": "您当前的危险因素表明患阿尔茨海默病的概率较低。请继续保持健康的生活习惯。",
+      "medium": "您的评估表明风险水平中等。请考虑咨询医疗专业人士以获取个性化建议。",
+      "high": "您的结果表明风险较高。我们强烈建议咨询医疗专业人士进行全面评估。"
+    },
+    "recommendations": "个性化推荐",
+    "share": "分享结果",
+    "retake": "重新评估",
+    "download": "下载报告"
+  },
+  "games": {
+    "title": "大脑训练游戏",
+    "subtitle": "通过这些认知练习保持思维敏锐",
+    "memoryMatch": "记忆匹配",
+    "sequenceRecall": "序列回忆",
+    "patternRecognition": "模式识别",
+    "play": "立即开始",
+    "score": "分数：{{score}}",
+    "time": "时间：{{time}}秒"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "confirm": "确认",
+    "close": "关闭",
+    "back": "返回",
+    "next": "下一步",
+    "submit": "提交",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "view": "查看",
+    "language": "语言",
+    "english": "英语",
+    "spanish": "西班牙语",
+    "french": "法语",
+    "german": "德语",
+    "chinese": "中文"
+  }
+}
