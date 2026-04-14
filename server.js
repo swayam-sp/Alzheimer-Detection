@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(__dirname, 'Alzhiemer Main'));
+app.use(express.static(__dirname));
 
 // Built-in FAQ for basic questions
 const faq = {
